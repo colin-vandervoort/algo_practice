@@ -11,9 +11,9 @@ class Solution(object):
         :rtype: Optional[ListNode]
         """
         def next(ref_a, ref_b):
-            if ref_a is None and ref_b is None:
-                return None, ref_a, ref_b
             if ref_a is None:
+                if ref_b is None:
+                    return None, ref_a, ref_b
                 return ref_b, ref_a, ref_b.next
             if ref_b is None:
                 return ref_a, ref_a.next, ref_b
