@@ -1,3 +1,6 @@
+from typing import List
+
+
 class Solution:
     def binarySearch(self, haystack: List[int], needle: int) -> int:
         left, right = 0, len(haystack) - 1

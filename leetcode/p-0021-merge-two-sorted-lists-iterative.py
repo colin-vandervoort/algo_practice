@@ -25,7 +25,7 @@ class Solution(object):
         ret_head, list1_pos, list2_pos = next(list1, list2)
         ret_pos = ret_head
 
-        while list1_pos != None or list2_pos != None:
+        while list1_pos is not None or list2_pos is not None:
             next_node, list1_pos, list2_pos = next(list1_pos, list2_pos)
             ret_pos.next = next_node
             ret_pos = ret_pos.next
