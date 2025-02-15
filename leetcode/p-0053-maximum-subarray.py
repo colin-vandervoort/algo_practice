@@ -9,6 +9,7 @@ from typing import List
 #                 m = max(m, sum(nums[l:r+1]))
 #         return m
 
+
 # O(N)
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
@@ -21,4 +22,3 @@ class Solution:
             m_sum = max(m_sum, curr_sum)
 
         return m_sum
-

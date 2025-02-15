@@ -5,18 +5,22 @@ class TreeNode:
         self.left = None
         self.right = None
 
+
 class Solution:
-    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+    def lowestCommonAncestor(
+        self, root: "TreeNode", p: "TreeNode", q: "TreeNode"
+    ) -> "TreeNode":
         curr = root
         while True:
-            if (curr.val >= p.val and curr.val <= q.val):
+            if curr.val >= p.val and curr.val <= q.val:
                 return curr
-            elif (curr.val <= p.val and curr.val >= q.val):
+            elif curr.val <= p.val and curr.val >= q.val:
                 return curr
-            elif (curr.val > p.val and curr.val > q.val):
+            elif curr.val > p.val and curr.val > q.val:
                 curr = curr.left
             else:
                 curr = curr.right
+
 
 root = TreeNode(6)
 

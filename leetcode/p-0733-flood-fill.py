@@ -1,9 +1,15 @@
 from typing import List
 
+
 class Solution:
-    def floodFill(self, image: List[List[int]], sr: int, sc: int, newColor: int) -> List[List[int]]:
+    def floodFill(
+        self, image: List[List[int]], sr: int, sc: int, newColor: int
+    ) -> List[List[int]]:
         startColor = image[sr][sc]
-        def floodFillRec(image: List[List[int]], sr: int, sc: int, newColor: int, startColor: int):
+
+        def floodFillRec(
+            image: List[List[int]], sr: int, sc: int, newColor: int, startColor: int
+        ):
             image[sr][sc] = newColor
 
             up = sr - 1
@@ -31,6 +37,5 @@ class Solution:
                     floodFillRec(image, sr, right, newColor, startColor)
 
         floodFillRec(image, sr, sc, newColor, startColor)
-
 
         return image

@@ -13,26 +13,28 @@ import sys
 # The function accepts STRING s as parameter.
 #
 
+
 def timeConversion(s):
     # Write your code here
     hour = int(s[0:2])
     unchanged = s[2:-2]
     meridian = s[-2:]
 
-    if meridian == 'PM' and hour != 12:
+    if meridian == "PM" and hour != 12:
         hour += 12
-    if meridian == 'AM' and hour == 12:
+    if meridian == "AM" and hour == 12:
         hour -= 12
 
-    return f'{str(hour).zfill(2)}{unchanged}'
+    return f"{str(hour).zfill(2)}{unchanged}"
 
-if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+if __name__ == "__main__":
+    fptr = open(os.environ["OUTPUT_PATH"], "w")
 
     s = input()
 
     result = timeConversion(s)
 
-    fptr.write(result + '\n')
+    fptr.write(result + "\n")
 
     fptr.close()

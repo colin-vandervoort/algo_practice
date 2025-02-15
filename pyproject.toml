@@ -1,0 +1,24 @@
+[project]
+name = "algo-practice"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "Colin", email = "colin.vandervoort.42@gmail.com"},
+]
+dependencies = []
+requires-python = "==3.13.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = false
+
+[tool.pdm.scripts]
+ruff-check = "ruff check"
+ruff-format = "ruff format"
+
+[dependency-groups]
+formatting = [
+    "ruff>=0.9.6",
+]

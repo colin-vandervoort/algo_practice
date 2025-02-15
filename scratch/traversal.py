@@ -5,6 +5,7 @@ class TreeNode:
         self.left = None
         self.right = None
 
+
 root = TreeNode(6)
 
 root.left = TreeNode(2)
@@ -19,6 +20,7 @@ root.right.right = TreeNode(9)
 
 p = TreeNode(0)
 q = TreeNode(9)
+
 
 def traverse(root, p, q):
     curr = root

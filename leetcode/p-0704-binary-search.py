@@ -21,4 +21,3 @@ class Solution(object):
                 upper = part
             else:
                 lower = part
-

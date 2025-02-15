@@ -10,6 +10,7 @@ class Solution(object):
         :type list2: Optional[ListNode]
         :rtype: Optional[ListNode]
         """
+
         def next(ref_a, ref_b):
             if ref_a is None:
                 if ref_b is None:
@@ -20,13 +21,13 @@ class Solution(object):
             if ref_a.val < ref_b.val:
                 return ref_a, ref_a.next, ref_b
             return ref_b, ref_a, ref_b.next
-        
+
         ret_head, list1_pos, list2_pos = next(list1, list2)
         ret_pos = ret_head
-        
+
         while list1_pos != None or list2_pos != None:
             next_node, list1_pos, list2_pos = next(list1_pos, list2_pos)
             ret_pos.next = next_node
             ret_pos = ret_pos.next
-        
+
         return ret_head
