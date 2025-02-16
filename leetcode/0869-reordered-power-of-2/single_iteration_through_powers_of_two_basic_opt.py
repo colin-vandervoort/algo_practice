@@ -3,14 +3,25 @@ from collections import Counter
 
 class Solution:
     def reorderedPowerOf2(self, n: int) -> bool:
-        counter_n = Counter(str(n))
+        str_n = str(n)
+        counter_n = Counter(str_n)
+        digits_n = set(str_n)
 
         for exponent in range(0, 31):
             power = str(pow(2, exponent))
             counter_power = Counter(power)
 
-            if all([counter_n[str(i)] == counter_power[str(i)] for i in range(0, 10)]):
-                return True
+            if len(digits_n ^ set(counter_power.keys())):
+                continue
+            if any(
+                [
+                    counter_n[digit_char] != counter_power[digit_char]
+                    for digit_char in digits_n
+                ]
+            ):
+                continue
+            return True
+
         return False
 
 
