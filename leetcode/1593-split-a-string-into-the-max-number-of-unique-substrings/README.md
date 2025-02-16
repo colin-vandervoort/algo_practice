@@ -1,0 +1,3 @@
+- use trie?
+- combine sliding window and Counter?
+- only need to increase in substring length for a char once it has been used
