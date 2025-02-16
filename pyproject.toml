@@ -15,10 +15,14 @@ license = {text = "MIT"}
 distribution = false
 
 [tool.pdm.scripts]
+pytest = "pytest"
 ruff-check = "ruff check"
 ruff-format = "ruff format"
 
 [dependency-groups]
 formatting = [
     "ruff>=0.9.6",
+]
+test = [
+    "pytest>=8.3.4",
 ]

@@ -14,6 +14,9 @@ class Solution:
         return False
 
 
-solution = Solution()
-print(solution.reorderedPowerOf2(576))
-print(solution.reorderedPowerOf2(1))
+if __name__ == "__main__":
+    solution = Solution()
+    print(solution.reorderedPowerOf2(512))
+    print(solution.reorderedPowerOf2(1521))
+    print(solution.reorderedPowerOf2(513))
+    print(solution.reorderedPowerOf2(1))
