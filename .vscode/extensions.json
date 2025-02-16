@@ -3,5 +3,6 @@
         "charliermarsh.ruff",
         "EditorConfig.EditorConfig",
         "esbenp.prettier-vscode",
+        "ms-python.python",
     ]
 }
