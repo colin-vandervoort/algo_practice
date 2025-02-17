@@ -18,6 +18,7 @@ distribution = false
 pytest = "pytest"
 ruff-check = "ruff check"
 ruff-format = "ruff format"
+lc-new = "cookiecutter -o leetcode tools/cookiecutter-leetcode-problem"
 
 [dependency-groups]
 formatting = [
@@ -25,4 +26,7 @@ formatting = [
 ]
 test = [
     "pytest>=8.3.4",
+]
+automation = [
+    "cookiecutter>=2.6.0",
 ]

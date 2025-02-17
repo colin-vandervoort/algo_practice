@@ -16,6 +16,7 @@
         "editor.formatOnSave": true
     },
     "cSpell.words": [
+        "cookiecutter",
         "leetcode",
         "pytest",
         "spacecadet"
