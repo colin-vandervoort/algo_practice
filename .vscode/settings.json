@@ -16,7 +16,9 @@
         "editor.formatOnSave": true
     },
     "cSpell.words": [
-        "pytest"
+        "leetcode",
+        "pytest",
+        "spacecadet"
     ],
     "cSpell.ignorePaths": [
         "package-lock.json",
