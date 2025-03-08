@@ -20,7 +20,8 @@
         "leetcode",
         "nooby",
         "pytest",
-        "spacecadet"
+        "spacecadet",
+        "testpaths"
     ],
     "cSpell.ignorePaths": [
         "package-lock.json",
@@ -33,7 +34,7 @@
         "**/test_*",
     ],
     "python.testing.pytestArgs": [
-        "."
+        "python/solutions"
     ],
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true

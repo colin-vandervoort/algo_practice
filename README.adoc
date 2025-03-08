@@ -1,0 +1,16 @@
+= algorithms and data structures practice
+
+== prerequisites
+
+* git
+* python
+* pdm
+
+== setup
+
+[source, bash]
+----
+pdm venv create
+pdm use
+pdm install -G:all
+----

@@ -19,7 +19,12 @@ pytest = "pytest"
 ruff-check = "ruff check"
 ruff-format = "ruff format"
 isort = "isort"
-lc-new = "cookiecutter -o leetcode tools/cookiecutter-leetcode-problem"
+new-lc-py = "cookiecutter -o python/solutions/leetcode python/tools/cookiecutter-leetcode-problem"
+
+[tool.pytest.ini_options]
+testpaths = [
+    "python/solutions"
+]
 
 [dependency-groups]
 formatting = [
