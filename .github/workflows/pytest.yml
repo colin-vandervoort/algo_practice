@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 jobs:
-  testing:
+  test_python_leetcode_solutions:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -29,4 +29,4 @@ jobs:
           pdm sync -d -G test
       - name: Run Tests
         run: |
-          pdm run -v pytest
+          pdm run -v pytest leetcode
