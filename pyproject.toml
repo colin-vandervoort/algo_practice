@@ -18,11 +18,13 @@ distribution = false
 pytest = "pytest"
 ruff-check = "ruff check"
 ruff-format = "ruff format"
+isort = "isort"
 lc-new = "cookiecutter -o leetcode tools/cookiecutter-leetcode-problem"
 
 [dependency-groups]
 formatting = [
     "ruff>=0.9.6",
+    "isort>=6.0.1",
 ]
 test = [
     "pytest>=8.3.4",
