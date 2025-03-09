@@ -2,7 +2,7 @@
 import os
 import sys
 
-import initial_approach
+from . import initial_approach
 import pytest
 
 # current_dir = os.path.dirname(os.path.abspath(__file__))

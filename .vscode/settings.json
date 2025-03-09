@@ -19,6 +19,7 @@
         "cookiecutter",
         "leetcode",
         "nooby",
+        "pycodestyle",
         "pytest",
         "spacecadet",
         "testpaths"
