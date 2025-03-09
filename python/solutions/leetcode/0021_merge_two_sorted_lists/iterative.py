@@ -1,11 +1,11 @@
-class Solution(object):
-    def mergeTwoLists(self, list1, list2):
-        """
-        :type list1: Optional[ListNode]
-        :type list2: Optional[ListNode]
-        :rtype: Optional[ListNode]
-        """
+from typing import Optional
+from list_node import ListNode
 
+
+class Solution:
+    def mergeTwoLists(
+        self, list1: Optional[ListNode], list2: Optional[ListNode]
+    ) -> Optional[ListNode]:
         def next(ref_a, ref_b):
             if ref_a is None:
                 if ref_b is None:
