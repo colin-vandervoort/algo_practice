@@ -1,5 +1,6 @@
 import pytest
-import two_pointers
+
+from . import two_pointers
 
 test_params = [
     (0, True),

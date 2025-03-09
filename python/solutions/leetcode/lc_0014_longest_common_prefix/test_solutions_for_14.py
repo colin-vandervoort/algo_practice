@@ -1,18 +1,7 @@
-# ruff: noqa: E402, F401
-import os
-import sys
-
 import pytest
 
-current_dir = os.path.dirname(os.path.abspath(__file__))
-repo_dir = os.path.dirname(os.path.dirname(os.path.dirname(current_dir)))
-sys.path.append(repo_dir)
-import initial_approach_quadratic_complexity
-import list_based_trie
-import trie_fail_fast
-import trie_nooby
-from tools.debug_visualizer.visualize_data_structure import (
-    EdgeMetadata, NodeMetadata, visualize_data_structure)
+from . import (initial_approach_quadratic_complexity, list_based_trie,
+               trie_fail_fast, trie_nooby)
 
 test_params = [
     (["flower", "flow", "flight"], "fl"),

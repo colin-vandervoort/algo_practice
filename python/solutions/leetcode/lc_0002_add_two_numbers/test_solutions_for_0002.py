@@ -1,13 +1,14 @@
-import basic_iterative
 import pytest
-from list_node import ListNode as N
+
+from . import basic_iterative
+from .list_node import ListNode
 
 test_params = [
     (
-        N(2, N(4, N(3))),
-        N(5, N(6, N(4))),
-        N(7, N(0, N(8))),
-    ),
+        ListNode.factory([2, 4, 3]),
+        ListNode.factory([5, 6, 4]),
+        ListNode.factory([7, 0, 8]),
+    )
 ]
 
 

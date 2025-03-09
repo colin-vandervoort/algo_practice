@@ -1,7 +1,7 @@
 from typing import Optional, Self
 
 
-class ListNode(object):
+class ListNode:
     """
     Represents a node in a singly linked list.
     """
@@ -16,27 +16,6 @@ class ListNode(object):
         """
         self.val = val
         self.next = next
-
-    @staticmethod
-    def factory(input: list) -> Optional[Self]:
-        """
-        Creates a linked list from a Python list.
-
-        Args:
-            input: A list of values to create the linked list from.
-
-        Returns:
-            The head of the linked list, or None if the input list is empty.
-        """
-        if len(input) == 0:
-            return None
-        output = ListNode(input[0])
-        pos = output
-        for val in input[1:]:
-            pos.next = ListNode(val)
-            pos = pos.next
-
-        return output
 
     def __eq__(self: Self, other: Self):
         """
@@ -74,3 +53,24 @@ class ListNode(object):
             vals.append(pos.next.val)
             pos = pos.next
         return f"[{','.join(vals)}]"
+
+    @staticmethod
+    def factory(input: list) -> Optional[Self]:
+        """
+        Creates a linked list from a Python list.
+
+        Args:
+            input: A list of values to create the linked list from.
+
+        Returns:
+            The head of the linked list, or None if the input list is empty.
+        """
+        if len(input) == 0:
+            return None
+        output = ListNode(input[0])
+        pos = output
+        for val in input[1:]:
+            pos.next = ListNode(val)
+            pos = pos.next
+
+        return output

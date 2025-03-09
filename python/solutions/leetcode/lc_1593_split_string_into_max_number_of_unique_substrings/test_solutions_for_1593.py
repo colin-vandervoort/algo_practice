@@ -1,5 +1,6 @@
 import pytest
-import sliding_window_with_histogram
+
+from . import sliding_window_with_histogram
 
 test_params = [
     ("ababccc", 5),
