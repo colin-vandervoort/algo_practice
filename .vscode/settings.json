@@ -21,8 +21,10 @@
         "nooby",
         "pycodestyle",
         "pytest",
+        "shellcheck",
         "spacecadet",
-        "testpaths"
+        "testpaths",
+        "wumbo"
     ],
     "cSpell.ignorePaths": [
         "package-lock.json",

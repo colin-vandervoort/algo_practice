@@ -5,7 +5,7 @@ description = "Default template for PDM package"
 authors = [
     {name = "Colin", email = "colin.vandervoort.42@gmail.com"},
 ]
-dependencies = []
+dependencies = ["docker>=7.1.0"]
 requires-python = "==3.13.*"
 readme = "README.md"
 license = {text = "MIT"}
@@ -20,6 +20,7 @@ ruff-check = "ruff check"
 ruff-format = "ruff format"
 isort = "isort"
 new-lc-py = "cookiecutter -o python/solutions/leetcode python/tools/cookiecutter-leetcode-problem"
+docker-hello = "docker_hello.py"
 
 [tool.pytest.ini_options]
 testpaths = [
