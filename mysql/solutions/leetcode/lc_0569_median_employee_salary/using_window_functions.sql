@@ -1,0 +1,28 @@
+-- WITH
+--     ordered_ranked AS (
+--         SELECT
+--             id,
+--             company,
+--             salary,
+--             row_number() OVER (PARTITION BY company ORDER BY salary) AS salary_order,
+--             count(*) OVER (PARTITION BY company) AS employees_in_company
+--         FROM
+--             Employee
+--     )
+-- SELECT
+--     id,
+--     company,
+--     salary
+-- FROM
+--     ordered_ranked
+-- WHERE
+--     CASE
+--         WHEN ordered_ranked.employees_in_company % 2 = 0 THEN salary_order IN (
+--             ordered_ranked.employees_in_company / 2,
+--             (ordered_ranked.employees_in_company / 2) + 1
+--         )
+--         ELSE salary_order IN (
+--             FLOOR(ordered_ranked.employees_in_company / 2),
+--             CEIL(ordered_ranked.employees_in_company / 2)
+--         )
+--     END;
