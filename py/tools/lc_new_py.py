@@ -1,0 +1,20 @@
+if __name__ == "__main__":
+    from cookiecutter.main import cookiecutter
+    import os
+
+    base_project_directory = os.path.join(os.path.dirname(__file__), "..", "..")
+    base_project_directory = os.path.abspath(
+        os.path.join(os.path.dirname(__file__), "..", "..")
+    )
+    py_lc_solutions_dir = os.path.abspath(
+        os.path.join(base_project_directory, "py", "solutions", "leetcode")
+    )
+    cookiecutter_template_python_solution = os.path.abspath(
+        os.path.join(
+            base_project_directory, "py", "tools", "cookiecutter-leetcode-problem"
+        )
+    )
+
+    cookiecutter(
+        template=cookiecutter_template_python_solution, output_dir=py_lc_solutions_dir
+    )

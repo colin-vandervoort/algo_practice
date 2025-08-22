@@ -1,15 +1,20 @@
 [project]
 name = "algo-practice"
 version = "0.1.0"
-description = "Default template for PDM package"
+description = "Python tooling for algorithm practice"
 authors = [
     {name = "Colin", email = "colin.vandervoort.42@gmail.com"},
 ]
-dependencies = ["docker>=7.1.0"]
+dependencies = [
+    "docker>=7.1.0",
+    "ruff>=0.9.6",
+    "isort>=6.0.1",
+    "pytest>=8.3.4",
+    "cookiecutter>=2.6.0",
+]
 requires-python = "==3.13.*"
 readme = "README.md"
 license = {text = "MIT"}
-
 
 [tool.pdm]
 distribution = false
@@ -25,16 +30,4 @@ docker-hello = "docker_hello.py"
 [tool.pytest.ini_options]
 testpaths = [
     "python/solutions"
-]
-
-[dependency-groups]
-formatting = [
-    "ruff>=0.9.6",
-    "isort>=6.0.1",
-]
-test = [
-    "pytest>=8.3.4",
-]
-automation = [
-    "cookiecutter>=2.6.0",
 ]
