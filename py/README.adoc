@@ -1,0 +1,8 @@
+= Python solutions and supporting tools
+
+== Templating
+
+There is a link:https://cookiecutter.readthedocs.io/en/stable/[Cookiecutter]-based template for generating leetcode problem solutions, see the link:tools/cookiecutter-leetcode-problem/cookiecutter.json[config file].
+
+This template should be used via the link:tools/lc_new_py.py[lc_new_py.py], which passed the parameters for the template and output locations to Cookiecutter.
+

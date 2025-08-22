@@ -42,3 +42,13 @@ pdm venv create
 pdm use
 pdm install -G:all
 ----
+
+== Running internal scripts and other python-based tools
+
+=== Using uv
+
+[source, bash]
+----
+uv run -- py/tools/pytest_solutions.py
+uv run -- ruff format
+----
