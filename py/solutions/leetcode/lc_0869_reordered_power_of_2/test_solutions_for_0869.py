@@ -1,8 +1,11 @@
 import pytest
 
-from . import (integer_log, naive,
-               single_iteration_through_powers_of_two_basic_opt,
-               single_one_in_binary_string)
+from . import (
+    integer_log,
+    naive,
+    single_iteration_through_powers_of_two_basic_opt,
+    single_one_in_binary_string,
+)
 
 test_params = [
     (512, True),

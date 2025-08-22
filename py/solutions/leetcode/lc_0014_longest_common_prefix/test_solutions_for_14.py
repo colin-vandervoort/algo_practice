@@ -1,7 +1,11 @@
 import pytest
 
-from . import (initial_approach_quadratic_complexity, list_based_trie,
-               trie_fail_fast, trie_nooby)
+from . import (
+    initial_approach_quadratic_complexity,
+    list_based_trie,
+    trie_fail_fast,
+    trie_nooby,
+)
 
 test_params = [
     (["flower", "flow", "flight"], "fl"),
