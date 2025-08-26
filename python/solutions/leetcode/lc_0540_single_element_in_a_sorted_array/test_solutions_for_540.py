@@ -2,7 +2,7 @@
 import os
 import sys
 
-from . import linear_search
+from . import linear_search_itertools, linear_search_no_deps
 import pytest
 
 # current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -30,6 +30,13 @@ def test_test_inputs_all_odd_len():
         assert len(input) % 2 == 1
 
 
-# @pytest.mark.parametrize("test_input,expected", test_params)
-# def test_linear_linear_search(test_input, expected):
-#     sol = linear_search.Solution()  # noqa: F841
+@pytest.mark.parametrize("test_input,expected", test_params)
+def test_linear_search_itertools(test_input, expected):
+    sol = linear_search_itertools.Solution()  # noqa: F841
+    assert sol.singleNonDuplicate(test_input) == expected
+
+
+@pytest.mark.parametrize("test_input,expected", test_params)
+def test_linear_search_no_deps(test_input, expected):
+    sol = linear_search_no_deps.Solution()  # noqa: F841
+    assert sol.singleNonDuplicate(test_input) == expected
