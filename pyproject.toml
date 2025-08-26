@@ -31,3 +31,6 @@ docker-hello = "docker_hello.py"
 testpaths = [
     "python/solutions"
 ]
+norecursedirs = [
+    "python/tools/cookiecutter-leetcode-problem"
+]
