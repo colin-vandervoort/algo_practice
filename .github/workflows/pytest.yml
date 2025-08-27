@@ -32,7 +32,7 @@ jobs:
         run: uv sync --locked --all-extras --dev
 
       - name: Run algorithm solution tests
-        run: uv run -- py/tools/pytest_solutions.py
+        run: uv run -- python/tools/pytest_solutions.py
 
       # - name: Set up PDM
       #   uses: pdm-project/setup-pdm@v4
