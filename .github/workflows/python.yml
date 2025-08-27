@@ -1,4 +1,4 @@
-name: pytest
+name: python
 
 on:
   push:
@@ -42,6 +42,3 @@ jobs:
       # - name: Install dependencies
       #   run: |
       #     pdm sync -d -G test
-      # - name: Run Tests
-      #   run: |
-      #     pdm run -v pytest
