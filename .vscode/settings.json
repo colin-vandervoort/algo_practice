@@ -20,11 +20,14 @@
         "leetcode",
         "nooby",
         "norecursedirs",
+        "nums",
         "pycodestyle",
         "pytest",
         "shellcheck",
         "spacecadet",
+        "summands",
         "testpaths",
+        "vandervoort",
         "wumbo"
     ],
     "cSpell.ignorePaths": [
