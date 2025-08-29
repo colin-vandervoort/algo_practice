@@ -178,3 +178,8 @@ pyrightconfig.json
 
 **/.DS_Store*
 /tmp
+
+
+# Added by cargo
+
+/target
