@@ -1,0 +1,35 @@
+variables:
+  - name: ProblemNumber
+    description: The LeetCode problem number (e.g. 1)
+    type: int
+    order: 0
+
+  - name: ProblemName
+    description: The name of the problem (e.g. "two sum")
+    type: string
+    order: 1
+
+  - name: SolutionNames
+    description: Filesystem-friendly names for different approaches to the problems
+    type: list
+    default:
+      - brute_force
+    order: 2
+
+dependencies:
+  - name: CommonFiles
+    template-url: ../lc_rust_common_files
+    output-folder: "{{ outputFolder }}/{{ dasherize .ProblemName | replaceAll \"-\" \"_\" | printf \"lc_%04d_%v\" .ProblemNumber }}"
+
+  - name: LoopSolutionNames
+    template-url: ../lc_rust_solution
+    for_each_reference: SolutionNames
+    output-folder: "{{ outputFolder }}/{{ dasherize .ProblemName | replaceAll \"-\" \"_\" | printf \"lc_%04d_%v\" .ProblemNumber }}"
+    variables:
+      - name: SolutionName
+        default: "{{ .__each__ }}"
+
+# hooks:
+#   after:
+#     - command: rustfmt
+#       dir: "{{ outputFolder }}/{{ dasherize .ProblemName | replaceAll \"-\" \"_\" | printf \"lc_%04d_%v\" .ProblemNumber }}"
