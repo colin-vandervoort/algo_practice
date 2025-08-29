@@ -49,6 +49,8 @@ pdm install -G:all
 
 [source, bash]
 ----
-uv run -- py/tools/pytest_solutions.py
+uv run -- python/tools/cookiecutter_lc_py.py # generate a directory for a Python LeetCode solution
+uv run -- python/tools/boilerplate_lc_go.py # generate a directory for a Golang LeetCode solution
+uv run -- python/tools/pytest_solutions.py # run all tests for Python solutions
 uv run -- ruff format
 ----
