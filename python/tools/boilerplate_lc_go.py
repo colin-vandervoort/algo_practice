@@ -10,8 +10,7 @@ if __name__ == "__main__":
     boilerplate_base_config_file_path = os.path.abspath(
         os.path.join(
             base_project_directory,
-            "go",
-            "tools",
+            "_tools",
             "boilerplate",
             "lc_go_outer",
         )

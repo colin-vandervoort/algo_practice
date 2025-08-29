@@ -9,9 +9,7 @@ if __name__ == "__main__":
         os.path.join(base_project_directory, "python", "solutions", "leetcode")
     )
     cookiecutter_template_python_solution = os.path.abspath(
-        os.path.join(
-            base_project_directory, "python", "tools", "cookiecutter-leetcode-problem"
-        )
+        os.path.join(base_project_directory, "_tools", "cookiecutter", "lc_py")
     )
 
     cookiecutter(
