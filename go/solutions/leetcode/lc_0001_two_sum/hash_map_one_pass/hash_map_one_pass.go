@@ -2,13 +2,13 @@
 package diffmaponepass
 
 func twoSum(nums []int, target int) []int {
-	diffMap := make(map[int]int)
+	valueToIndexMap := make(map[int]int)
 	for idx, num := range nums {
 		complement := target - num
-		if complementIdx, ok := diffMap[complement]; ok {
+		if complementIdx, ok := valueToIndexMap[complement]; ok {
 			return []int{complementIdx, idx}
 		}
-		diffMap[num] = idx
+		valueToIndexMap[num] = idx
 	}
 	return []int{}
 }
