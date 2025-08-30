@@ -48,6 +48,7 @@
         "scrapy",
         "sdist",
         "shellcheck",
+        "snakecase",
         "spacecadet",
         "Spyder",
         "spyderproject",
