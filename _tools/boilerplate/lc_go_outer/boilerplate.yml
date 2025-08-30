@@ -10,24 +10,31 @@ variables:
     order: 1
 
   - name: SolutionNames
-    description: Filesystem-friendly names for different approaches to the problems
+    description: The names of the approaches to the problem (e.g. ["brute force", "sliding window"])
     type: list
     default:
-      - brute_force
+      - "brute force"
     order: 2
 
 dependencies:
   - name: CommonFiles
     template-url: ../lc_go_common_files
-    output-folder: "{{ outputFolder }}/{{ dasherize .ProblemName | replaceAll \"-\" \"_\" | printf \"lc_%04d_%v\" .ProblemNumber }}"
+    output-folder: "{{ outputFolder }}/{{ snakecase .ProblemName | printf \"lc_%04d_%v\" .ProblemNumber }}"
+    variables:
+      - name: ProblemDirectory
+        default: "{{ snakecase .ProblemName | printf \"lc_%04d_%v\" .ProblemNumber }}"
 
   - name: LoopSolutionNames
     template-url: ../lc_go_solution
     for_each_reference: SolutionNames
-    output-folder: "{{ outputFolder }}/{{ dasherize .ProblemName | replaceAll \"-\" \"_\" | printf \"lc_%04d_%v\" .ProblemNumber }}/{{ .__each__ }}"
+    output-folder: "{{ outputFolder }}/{{ snakecase .ProblemName | printf \"lc_%04d_%v\" .ProblemNumber }}/{{ snakecase .__each__ }}"
     variables:
       - name: SolutionName
-        default: "solution_{ .__each__ }"
+        default: "{{ .__each__ }}"
+      - name: SnakeCaseSolutionName
+        default: "{{ snakecase .__each__ }}"
+      - name: SolutionPackageName
+        default: "{{ snakecase .__each__ | replace \"_\" \"\" }}"
 
 # hooks:
 #   before:
