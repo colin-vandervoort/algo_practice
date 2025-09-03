@@ -16,6 +16,25 @@ variables:
       - "brute force"
     order: 2
 
+  - name: SolutionFunctionName
+    type: string
+    default: compute_baz
+    order: 3
+
+  # For now, just template all args as type of i32
+  - name: SolutionFunctionArgs
+    type: list
+    default:
+      - "foo"
+      - "bar"
+    order: 4
+
+  # - name: SolutionFunctionReturnType
+  #   type: string
+  #   default:
+  #     - "i32"
+  #   order: 5
+
 dependencies:
   - name: CommonFiles
     template-url: ../lc_rust_common_files
@@ -31,7 +50,14 @@ dependencies:
       - name: SnakeCaseSolutionName
         default: "{{ snakecase .__each__ }}"
 
-# hooks:
-#   after:
-#     - command: rustfmt
-#       dir: "{{ outputFolder }}/{{ dasherize .ProblemName | replaceAll \"-\" \"_\" | printf \"lc_%04d_%v\" .ProblemNumber }}"
+  - name: TestCases
+    template-url: ../lc_rust_tests
+    output-folder: "{{ outputFolder }}/../../tests"
+    variables:
+      - name: TestsFileName
+        default: "{{ snakecase .ProblemName | printf \"lc_%04d_%v\" .ProblemNumber }}"
+
+hooks:
+  after:
+    - command: cargo fmt
+      dir: "{{ outputFolder }}/../../.."

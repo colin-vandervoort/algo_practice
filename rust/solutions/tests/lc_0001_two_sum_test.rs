@@ -27,5 +27,5 @@ fn hash_map_one_pass(test_case: TestCase) {
 #[apply(lc_0001_test_cases)]
 fn hash_map_two_passes(test_case: TestCase) {
     let actual = TwoPassesHashMapSolution::two_sum(test_case.nums, test_case.sum);
-    assert_eq!(actual, test_case.expect)
+    assert_eq!(actual, test_case.expect);
 }

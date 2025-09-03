@@ -1,1 +1,13 @@
 # This file is necessary for the directory to be valid as a template
+
+hooks:
+  after:
+    - name: Add solution module declaration
+      command: python
+      args:
+        - "{{ templateFolder }}/update_lc_rust_module_declarations.py"
+        # - "{{ outputFolder }}/mod.rs"
+        # - "{{ snakecase .SolutionName }}"
+
+skip_files:
+  - path: update_lc_rust_module_declarations.py

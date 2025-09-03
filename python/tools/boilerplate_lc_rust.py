@@ -2,6 +2,7 @@ if __name__ == "__main__":
     import os
     import shutil
     import subprocess
+    import sys
 
     base_project_directory = os.path.abspath(
         os.path.join(os.path.dirname(__file__), "..", "..")
@@ -39,6 +40,7 @@ if __name__ == "__main__":
             *template_url_args,
             *output_folder_args,
             "--disable-dependency-prompt",
+            *sys.argv[1:],
         ],
         check=True,
     )
