@@ -10,11 +10,11 @@ def solution(N):
     left = 0
     while left < binary_rep_len:
         if binary_rep[left] == "1":
-            right = left + 1
+            right = left + 2
             while right < binary_rep_len:
                 if binary_rep[right] == "1":
                     max_gap = max(max_gap, right - left - 1)
-                    left = right
+                    left = right - 2
                     break
                 right += 1
         left += 1
