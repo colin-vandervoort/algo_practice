@@ -59,5 +59,7 @@ dependencies:
 
 hooks:
   after:
-    - command: cargo fmt
+    - command: cargo
+      args:
+        - fmt
       dir: "{{ outputFolder }}/../../.."
