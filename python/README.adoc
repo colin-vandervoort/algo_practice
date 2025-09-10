@@ -1,8 +1,61 @@
 = Python solutions and supporting tools
 
-== Templating
+== prerequisites
 
-There is a link:https://cookiecutter.readthedocs.io/en/stable/[Cookiecutter]-based template for generating leetcode problem solutions, see the link:tools/cookiecutter-leetcode-problem/cookiecutter.json[config file].
+* uv
+* python (can be installed via uv)
+* [.line-through]#pdm#
 
-This template should be used via the link:tools/lc_new_py.py[lc_new_py.py], which passed the parameters for the template and output locations to Cookiecutter.
+== setup
 
+From the https://docs.astral.sh/uv/guides/install-python/[uv documentation on installing Python]:
+
+[.excerpt]
+----
+If Python is already installed on your system, uv will detect and use it without configuration. However, uv can also install and manage Python versions. uv automatically installs missing Python versions as needed — you don't need to install Python to get started.
+----
+
+=== (optional) installing python via uv
+
+[source, bash]
+----
+uv python install
+----
+
+See https://docs.astral.sh/uv/guides/install-python/ for more details.
+
+=== Virtual environments via uv
+
+[source, bash]
+----
+# creates a venv (if one does not already exist) and then activates it
+uv venv
+uv pip install -r pyproject.toml
+----
+
+=== Virtual environments via pdm (old method)
+
+[source, bash]
+----
+pdm venv create
+pdm use
+pdm install -G:all
+----
+
+== Running internal scripts and other python-based tools
+
+=== Using uv
+
+[source, bash]
+----
+# generate code for LeetCode solutions
+uv run -- tools/cookiecutter_lc_py.py # Python
+uv run -- tools/boilerplate_lc_go.py # Golang
+uv run -- tools/boilerplate_lc_rust.py # Rust
+
+# run all tests for Python solutions
+uv run -- tools/pytest_solutions.py
+
+# format Python source files
+uv run -- ruff format
+----

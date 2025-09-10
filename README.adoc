@@ -1,56 +1,28 @@
-= algorithms and data structures practice
-
-== prerequisites
-
-* git
-* uv
-* python (can be installed via uv)
-* [.line-through]#pdm#
+= data structures and algorithms (DSA) practice
 
 == setup
 
-From the https://docs.astral.sh/uv/guides/install-python/[uv documentation on installing Python]:
+Follow the instructions in each directory.
 
-[.excerpt]
-----
-If Python is already installed on your system, uv will detect and use it without configuration. However, uv can also install and manage Python versions. uv automatically installs missing Python versions as needed — you don't need to install Python to get started.
-----
+* link:./python/README.adoc[Python]
+* link:./rust/README.adoc[Rust]
 
-=== (optional) installing python via uv
+== Templating
 
-[source, bash]
-----
-uv python install
-----
+Creating directories and files for solution code modules can be a repetitive task. To avoid this chore and standardize solution formats, there are a few options below for automatically generating code.
 
-See https://docs.astral.sh/uv/guides/install-python/ for more details.
+=== Boilerplate
 
-=== Virtual environments via uv
+There are link:https://github.com/gruntwork-io/boilerplate[Boilerplate]-based templates for generating Golang and Rust LeetCode problem solution skeletons.
 
-[source, bash]
-----
-# creates a venv (if one does not already exist) and then activates it
-uv venv
-uv pip install -r pyproject.toml
-----
+The below scripts handle passing the appropriate output directories for this repository of solutions.
 
-=== Virtual environments via pdm (old method)
+link:./python/tools/boilerplate_lc_go.py[boilerplate_lc_go.py]
 
-[source, bash]
-----
-pdm venv create
-pdm use
-pdm install -G:all
-----
+link:./python/tools/boilerplate_lc_rust.py[boilerplate_lc_rust.py]
 
-== Running internal scripts and other python-based tools
+=== Cookiecutter
 
-=== Using uv
+There is a link:https://cookiecutter.readthedocs.io/en/stable/[Cookiecutter]-based template for generating Python LeetCode problem solution skeletons, see the link:_tools/cookiecutter/lc_py/cookiecutter.json[config file].
 
-[source, bash]
-----
-uv run -- python/tools/cookiecutter_lc_py.py # generate a directory for a Python LeetCode solution
-uv run -- python/tools/boilerplate_lc_go.py # generate a directory for a Golang LeetCode solution
-uv run -- python/tools/pytest_solutions.py # run all tests for Python solutions
-uv run -- ruff format
-----
+This template should be used via the link:./python/tools/cookiecutter_lc_py.py[lc_new_py.py] script, which passes the parameters for the template and output locations to Cookiecutter.

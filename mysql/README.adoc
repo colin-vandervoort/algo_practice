@@ -1,6 +1,7 @@
-## Developing queries in Docker
+== Developing queries in Docker
 
-```shell
+[source, bash]
+----
 docker compose up -d
 docker exec -it mysql-db-1 /bin/bash
 mysql algo --password="wumbo"
@@ -8,7 +9,4 @@ mysql algo --password="wumbo"
 # misc help commands
 help help
 help contents
-```
-
-```sql
-```
+----
