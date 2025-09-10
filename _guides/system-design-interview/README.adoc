@@ -1,0 +1,53 @@
+= System Design Interview Guide
+
+== Categories of System Design
+
+* Object-Oriented Programming (OOP) Design
+* Frontend Design
+* Product Design
+* Infrastructure Design
+
+There can be overlap between Product Design and the other system design categories.
+
+== Process
+
+. Understand the Problem / Collect Requirements (*5 minutes*)
+* Functional Requirements (e.g. "YouTube allows users to upload videos")
+* Non-Functional Requirements
+** *Scale*
+*** Daily Active Users (DAU)
+** *Performance*
+*** Latency
+**** Examples
+***** A chat app might have tight latency requirments that warrant the added complexity of using WebSockets.
+** Consistency
+** Security
+** Freshness
+
+. High-Level Design (*15 minutes*)
+* Get buy-in from interviewer
+* Can use a top-down approach and start with the APIs, which establish a contract between the end users and the backend systems.
+** Does the API satisfy all the requirements?
+* Hash out the data model and schema
+** Can defer defining the schema to the deep dive if this has high impact on the non-functional requirements.
+** *Data access patterns*
+** *Read/write ratio*
+** *CAP theorem*
+
+. Design Deep Dive (*15 minutes*)
+* For the top 2-3 issues:
+.. Articulate the problem
+.. Come up with at least two solutions
+.. Discuss the trade-offs of the solutions
+.. Pick a solution and discuss it with the interviewer
+* Where should data be cached?
+
+. Wrap Up (*5 minutes*)
+* Does the design satisfy all of the requirements?
+
+== Evaluation Criteria
+
+. Problem Solving
+. Solution Design
+. Technical Excellence
+. Communication
