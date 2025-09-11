@@ -1,0 +1,42 @@
+ifdef::env-github[]
+:MERMAID: source, mermaid
+endif::[]
+ifndef::env-github[]
+:MERMAID: mermaid
+endif::[]
+
+== Open Systems Interconnection (OSI) model
+
+link:https://en.wikipedia.org/wiki/OSI_model[OSI model - Wikipedia]
+
+[{MERMAID}]
+----
+block-beta
+columns 1
+    l7["Application layer (7)"]
+    l6["Presentation/syntax layer (6)"]
+    l5["Session layer (5)"]
+    l4["Transport layer (4)"]
+    l3["Network layer (3)"]
+    l2["Data link layer (2)"]
+    l1["Physical layer (1)"]
+----
+
+=== Application layer (7)
+
+* HTTP/HTTPS protocols
+* REST vs GraphQL vs gRPC
+* RESTful Semantics
+* DNS resolution
+* Websockets vs Server Sent Events (SSE)
+
+=== Transport layer (4)
+
+* TCP
+* UDP
+* Request response lifecycle
+
+=== Network layer (3)
+
+* Load Balancing
+* Firewalls, Access Control Lists (ACLs)

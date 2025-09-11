@@ -1,0 +1,68 @@
+// cSpell: ignore sirupsen, Bonér
+
+= Latency, Throughput, and Performance
+
+Some read operations note the system page size in parenthesis.
+
+[cols="2,1,1"]
+|===
+|Operation
+|Latency
+|Throughput
+
+|L1 cache access
+|~1 ns
+|N/A
+
+|Branch mis-predict
+|~5 ns
+|N/A
+
+|L2 cache access
+|~10 ns
+|N/A
+
+|Mutex lock/unlock
+|~25 ns
+|N/A
+
+|RAM
+|~100 ns
+|
+
+|System call
+|~500 ns
+|N/A
+
+|Sequential SSD Read (8 KiB)
+|~1 us
+|4 GiB/s
+
+|Random SSD Read (8 KiB)
+|~100 us
+|70 MiB/s
+
+|Network within same region
+|~250 us
+|2 GiB/s
+
+|{MySQL, Memcached, Redis, ..} query
+|~500 μs
+|
+
+|Sequential HDD Read (8 KiB)
+|~10 ms
+|250 MiB/s
+
+|Random HDD Read (8 KiB)
+|~10 ms
+|0.7 MiB/s
+
+|===
+
+== Sources
+
+* link:https://www.youtube.com/watch?v=Ru54dxzCyD0[YouTube: How to Prepare for System Design Interviews w/ Meta Staff Engineer]
+* link:https://blog.bytebytego.com/p/ep22-latency-numbers-you-should-know[ByteByteGo: Latency numbers you should know - Alex Xu]
+* link:https://gist.github.com/jboner/2841832[GitHub Gist: Latency Numbers Every Programmer Should Know - Jonas Bonér]
+* link:https://github.com/sirupsen/napkin-math/tree/master[GitHub: sirupsen/napkin-math]

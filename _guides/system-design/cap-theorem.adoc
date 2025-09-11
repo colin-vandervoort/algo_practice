@@ -1,0 +1,49 @@
+ifdef::env-github[]
+:MERMAID: source, mermaid
+endif::[]
+ifndef::env-github[]
+:MERMAID: mermaid
+endif::[]
+
+= CAP theorem
+
+[{MERMAID}]
+----
+block-beta
+    columns 3
+    regionAUser["Region A user"] space regionAServer["Region A server"]
+    space:3
+    space:3
+    regionBUser["Region B user"] space regionBServer["Region B server"]
+
+    regionAUser-- "write" -->regionAServer
+    regionBUser-- "read"  -->regionBServer
+    regionAServer-- "Replication fail" -->regionBServer
+----
+
+'''
+
+CAP theorem states that any distributed data store can provide at most two (2) of the following qualities
+
+* *Consistency*
++
+A distributed data store has consistency if a read operation returns the same value (reflecting the most recent write) or an error, regardless of the data store instance serving the request.
+
+* *Availability*
++
+A distributed data store is available if all non-failing nodes return every request with a response.
+
+* *Partition tolerance*
++
+--
+A distributed data store has partition tolerance if it can continue operating even in the case of network connectivity disruptions between instances. One of two strategies can be taken:
+
+** Cancel operations during a partition to ensure consistency at the expense of availability.
+** Carry out operations during a partition to provide availability at the risk of entering an inconsistent state.
+--
+
+All distributed systems are vulnerable to network failures, so systems generally are designed with partition tolerance. Consequently, designers must choose between consistency and availability for the second guarantee.
+
+== Sources
+
+* link:https://en.wikipedia.org/wiki/CAP_theorem[Wikipedia: CAP theorem]

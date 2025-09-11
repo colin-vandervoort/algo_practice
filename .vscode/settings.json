@@ -23,6 +23,8 @@
         "cython",
         "dmypy",
         "htmlcov",
+        "ifdef",
+        "ifndef",
         "ipynb",
         "ipython",
         "leetcode",
