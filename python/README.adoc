@@ -1,4 +1,5 @@
 = Python solutions and supporting tools
+:source-highlighter: highlight.js
 
 == prerequisites
 
@@ -31,15 +32,9 @@ See https://docs.astral.sh/uv/guides/install-python/ for more details.
 # creates a venv (if one does not already exist) and then activates it
 uv venv
 uv pip install -r pyproject.toml
-----
 
-=== Virtual environments via pdm (old method)
-
-[source, bash]
-----
-pdm venv create
-pdm use
-pdm install -G:all
+# add a package
+uv add sqlalchemy
 ----
 
 == Running internal scripts and other python-based tools
