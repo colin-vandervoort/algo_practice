@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from typing import List
+
 import pytest
 
 from . import min_queue

@@ -30,12 +30,8 @@
 
 # after coding, go through a literal example again
 
+from heapq import heappop, heappush  # heapify,
 from typing import List
-from heapq import (
-    heappush,
-    heappop,
-    # heapify,
-)
 
 # It's worth mentioning to the interviewer that sorting the array first can
 # work as part of a solution, but using a heap is often superior due to lower

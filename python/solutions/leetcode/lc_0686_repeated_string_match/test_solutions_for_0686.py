@@ -1,5 +1,6 @@
-from . import python_built_in_set_logic
 import pytest
+
+from . import python_built_in_set_logic
 
 test_params = [("abcd", "cdabcdab", 3), ("a", "aa", 2), ("a", "b", -1)]
 

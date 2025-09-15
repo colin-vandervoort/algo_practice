@@ -1,6 +1,7 @@
 if __name__ == "__main__":
-    from cookiecutter.main import cookiecutter
     import os
+
+    from cookiecutter.main import cookiecutter
 
     base_project_directory = os.path.abspath(
         os.path.join(os.path.dirname(__file__), "..", "..")

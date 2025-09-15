@@ -1,10 +1,7 @@
 # cspell: ignore BCDE, CDEF, DEFG
 
 # from collections import deque
-from itertools import (
-    # islice,
-    batched,
-)
+from itertools import batched  # islice,
 from typing import List
 
 

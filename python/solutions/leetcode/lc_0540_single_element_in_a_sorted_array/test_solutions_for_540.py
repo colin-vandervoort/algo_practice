@@ -2,8 +2,9 @@
 import os
 import sys
 
-from . import linear_search_itertools, linear_search_no_deps, binary_search_recursive
 import pytest
+
+from . import binary_search_recursive, linear_search_itertools, linear_search_no_deps
 
 # current_dir = os.path.dirname(os.path.abspath(__file__))
 # repo_dir = os.path.dirname(os.path.dirname(os.path.dirname(current_dir)))

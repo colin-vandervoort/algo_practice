@@ -2,8 +2,9 @@
 import os
 import sys
 
-from . import initial_approach
 import pytest
+
+from . import initial_approach
 
 # current_dir = os.path.dirname(os.path.abspath(__file__))
 # repo_dir = os.path.dirname(os.path.dirname(os.path.dirname(current_dir)))

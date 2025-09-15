@@ -2,9 +2,9 @@
 import os
 import sys
 
-from . import sliding_window
 import pytest
 
+from . import sliding_window
 
 solution_test_params = [
     ("A man, a plan, a canal: Panama", True),

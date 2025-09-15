@@ -1,6 +1,7 @@
 if __name__ == "__main__":
-    import pytest
     import os
+
+    import pytest
 
     base_project_directory = os.path.abspath(
         os.path.join(os.path.dirname(__file__), "..", "..")

@@ -1,6 +1,6 @@
 import os
-import sys
 import re
+import sys
 
 if __name__ == "__main__":
     base_project_directory = os.path.abspath(

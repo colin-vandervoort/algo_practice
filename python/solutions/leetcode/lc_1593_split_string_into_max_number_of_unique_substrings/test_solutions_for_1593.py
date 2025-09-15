@@ -3,9 +3,9 @@
 import pytest
 
 from . import (
-    sliding_window_with_histogram,
     backtracking_recursive,
     backtracking_recursive_with_pruning,
+    sliding_window_with_histogram,
 )
 
 test_params = [

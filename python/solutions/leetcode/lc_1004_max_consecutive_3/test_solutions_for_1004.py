@@ -2,8 +2,9 @@
 import os
 import sys
 
-from . import sliding_window
 import pytest
+
+from . import sliding_window
 
 # current_dir = os.path.dirname(os.path.abspath(__file__))
 # repo_dir = os.path.dirname(os.path.dirname(os.path.dirname(current_dir)))

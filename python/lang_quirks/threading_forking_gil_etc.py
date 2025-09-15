@@ -4,9 +4,9 @@ Demonstrates how multiprocessing can avoid GIL restrictions
 while threading cannot for CPU-bound tasks.
 """
 
-import time
 import multiprocessing
-from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
+import time
+from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 
 
 def cpu_bound_task(n):
