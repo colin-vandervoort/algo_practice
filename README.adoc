@@ -1,5 +1,9 @@
 = data structures and algorithms (DSA) practice
 
+This repository tracks most of my practice code for DSA problems, alongside some other information that I've compiled while preparing for software engineer interviews.
+
+A secondary use of the repository is for tracking some of my preferred tools and conventions for working with different programming languages.
+
 == setup
 
 Follow the instructions in each directory.

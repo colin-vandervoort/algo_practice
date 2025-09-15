@@ -1,0 +1,128 @@
+= Python automation for developing SQL solutions to LeetCode and similar (WIP)
+:source-highlighter: highlight.js
+
+== Requirements
+
+=== Functional
+
+* Input/test data can be provided using either raw SQL or SQLAlchemy ORM objects.
+* Docker container with the relevant database is created and started before inserting test data and running tests.
+* Tests can be run using the pytest test explorer.
+
+=== Non-functional
+
+* Database container is re-used between tests within the same module but has databases dropped and re-created.
+
+== Public API
+
+There should be an abstract `TestCaseProvider` class which is extended by concrete implementations.
+
+[source,python]
+----
+from abc import ABC, abstractmethod
+
+class TestCaseProvider(ABC):
+    @abstractmethod
+    def test_case_dml(self):
+        pass
+
+
+class RawSqlTestCaseDmlProvider(TestCaseProvider):
+    pass
+
+
+class SqlAlchemyModelTestCaseProvider(TestCaseProvider):
+    pass
+----
+
+Test files may use a combination of the approaches shown below.
+
+[source,python]
+----
+import pytest
+
+from tools.sql_solution_testing import ManagedContainer
+from tools.sql_solution_testing import (
+    RdbmsFixture,
+    RawSqlDdlProvider,
+    RawSqlTestCaseDmlProvider,
+)
+
+# TODO: create raw SQL example
+----
+
+[source,python]
+----
+import pytest
+from typing import List
+from typing import Optional
+from sqlalchemy import ForeignKey
+from sqlalchemy import String
+from sqlalchemy.orm import DeclarativeBase
+from sqlalchemy.orm import Mapped
+from sqlalchemy.orm import mapped_column
+from sqlalchemy.orm import relationship
+
+from tools.sql_solution_testing import ManagedContainer
+from tools.sql_solution_testing import (
+    SqlAlchemyModelTestCaseProvider,
+)
+
+
+class Base(DeclarativeBase):
+    pass
+
+
+class User(Base):
+    __tablename__ = "user_account"
+    id: Mapped[int] = mapped_column(primary_key=True)
+    name: Mapped[str] = mapped_column(String(30))
+    fullname: Mapped[Optional[str]]
+    def __repr__(self) -> str:
+        return f"User(id={self.id!r}, name={self.name!r}, fullname={self.fullname!r})"
+
+
+@pytest.fixture(scope="module")
+def mysql_session():
+    """
+    Perform all work to get the database ready for use
+    - pull docker image
+    - run container from image
+    - connect to container using SQLAlchemy
+    """
+    mysql_root_pass = "example_root_pass"
+    mysql_user = "example_user"
+    mysql_pass = "example_pass"
+    mysql_database = "sql_solution_testing"
+    env = {
+        "MYSQL_ROOT_PASSWORD": mysql_root_pass,
+        "MYSQL_USER": mysql_user,
+        "MYSQL_PASS": mysql_pass,
+        "MYSQL_DATABASE": mysql_database,
+    }
+    host_port = 6606
+    ports = {
+        "3306/tcp": host_port,
+    }
+    with ManagedContainer("mysql", environment=env, ports=ports) as mysql_container:
+        engine = create_engine(f"mysql+pymysql://{mysql_user}:{mysql_pass}@localhost:{host_port}/{mysql_database}?charset=utf8mb4")
+        with Session(engine) as session:
+            yield session
+
+
+@pytest.fixture(scope="function")
+def mysql_session_with_data(mysql_session):
+    """
+    Populates the database with data prior to yielding
+    """
+    with mysql_session.begin():
+        mysql_session.add_all([])
+        yield mysql_session
+        mysql_session.rollback()
+
+
+# TODO: add example of database query test case
+def test_sub_count_based_solution(mysql_session_with_data):
+    pass
+
+----

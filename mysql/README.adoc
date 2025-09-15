@@ -1,4 +1,6 @@
-== Developing queries in Docker
+= MySQL practice
+
+== Developing queries using a Docker MySQL instance
 
 [source, bash]
 ----
@@ -10,3 +12,21 @@ mysql algo --password="wumbo"
 help help
 help contents
 ----
+
+== Tooling
+
+=== Code formatting / linting
+
+I haven't settled on a code formatting tool for SQL yet. Here are some promising looking options.
+
+* link:https://github.com/sql-formatter-org/sql-formatter[sql-formatter]
+** tools based on sql-formatter
+*** link:https://marketplace.visualstudio.com/items?itemName=ReneSaarsoo.sql-formatter-vsc[SQL Formatter VSCode]
+*** link:https://github.com/gajus/eslint-plugin-sql[eslint-plugin-sql]
+* link:https://www.red-gate.com/products/sql-prompt/[redgate SQL Prompt (paid)]
+* link:https://www.softtreetech.com/sqlassist/[SoftTree SQL Assistant]
+
+=== Schema diagramming
+
+* link:https://dbml.dbdiagram.io/home/#intro[DBML]
+* link:https://mermaid.js.org/syntax/entityRelationshipDiagram.html[Mermaid: Entity Relationship Diagrams]

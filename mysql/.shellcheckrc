@@ -1,2 +1,2 @@
-disable=SC2034
-disable=SC2148
+# List checks to disable for this entire directory here
+# https://github.com/koalaman/shellcheck/wiki/Ignore#ignoring-one-or-more-types-of-errors-forever

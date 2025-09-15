@@ -16,11 +16,13 @@
         "editor.formatOnSave": true
     },
     "cSpell.words": [
+        "abstractmethod",
         "adoc",
         "celerybeat",
         "Connor",
         "cookiecutter",
         "cython",
+        "dbname",
         "dmypy",
         "htmlcov",
         "ifdef",
@@ -42,11 +44,14 @@
         "pycodestyle",
         "pyenv",
         "pyflow",
+        "pymysql",
         "pypa",
         "pypackages",
         "pyrightconfig",
         "pytest",
         "pytype",
+        "Rdbms",
+        "repr",
         "ropeproject",
         "rstest",
         "rtype",
@@ -58,7 +63,9 @@
         "Spyder",
         "spyderproject",
         "spyproject",
+        "sqlalchemy",
         "summands",
+        "tablename",
         "testpaths",
         "vandervoort",
         "webassets",
@@ -78,5 +85,9 @@
         "."
     ],
     "python.testing.unittestEnabled": false,
-    "python.testing.pytestEnabled": true
+    "python.testing.pytestEnabled": true,
+    "shellcheck.ignorePatterns": {
+        "**/*.env": true,
+        "**/*.env.*": true,
+    },
 }
