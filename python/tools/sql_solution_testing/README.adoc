@@ -8,6 +8,7 @@
 * Input/test data can be provided using either raw SQL or SQLAlchemy ORM objects.
 * Docker container with the relevant database is created and started before inserting test data and running tests.
 * Tests can be run using the pytest test explorer.
+* (Optional) Support link:https://podman-py.readthedocs.io/en/latest/[podman-py] as a backend for container operations
 
 === Non-functional
 
