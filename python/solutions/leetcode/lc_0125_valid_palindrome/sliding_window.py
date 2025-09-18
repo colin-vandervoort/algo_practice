@@ -4,7 +4,7 @@ import re
 class Solution:
     @staticmethod
     def clean_string(s: str) -> str:
-        return re.sub(r"[^a-zA-Z0-9]", "", s, 0, 0).lower()
+        return re.sub(r"[^a-zA-Z0-9]", repl="", string=s, count=0).lower()
 
     def isPalindrome(self, s: str) -> bool:
         cleaned = Solution.clean_string(s)

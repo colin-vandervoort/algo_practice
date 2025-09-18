@@ -7,7 +7,7 @@ from . import min_queue
 
 
 @dataclass
-class TestCase:
+class Case:
     nums: List[int]
     k: int
     expect: int
@@ -17,11 +17,11 @@ class TestCase:
 
 
 test_cases = [
-    TestCase(nums=[], k=0, expect=0),
-    TestCase(nums=[3, 2, 1, 5, 6, 4], k=2, expect=5),
-    TestCase(nums=[0, 1], k=1, expect=1),
-    TestCase(nums=[5, 0, 1], k=1, expect=5),
-    TestCase(nums=[5, 7, 1, 2, 0], k=2, expect=5),
+    Case(nums=[], k=0, expect=0),
+    Case(nums=[3, 2, 1, 5, 6, 4], k=2, expect=5),
+    Case(nums=[0, 1], k=1, expect=1),
+    Case(nums=[5, 0, 1], k=1, expect=5),
+    Case(nums=[5, 7, 1, 2, 0], k=2, expect=5),
 ]
 
 

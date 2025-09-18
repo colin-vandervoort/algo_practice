@@ -7,7 +7,7 @@ from . import max_heap, min_heap_in_place, min_heap_pure
 
 
 @dataclass
-class TestCase:
+class Case:
     nums: List[int]
     k: int
     expect: int
@@ -22,14 +22,14 @@ class TestCase:
 
 
 def idfn(val):
-    if isinstance(val, TestCase):
+    if isinstance(val, Case):
         return str(val)
 
 
 test_cases = [
-    TestCase(nums=[0], k=1, expect=0),
-    TestCase(nums=[3, 2, 1, 5, 6, 4], k=2, expect=5),
-    TestCase(nums=[3, 2, 3, 1, 2, 4, 5, 5, 6], k=4, expect=4),
+    Case(nums=[0], k=1, expect=0),
+    Case(nums=[3, 2, 1, 5, 6, 4], k=2, expect=5),
+    Case(nums=[3, 2, 3, 1, 2, 4, 5, 5, 6], k=4, expect=4),
 ]
 
 
