@@ -1,4 +1,4 @@
-from heapq import heappop, heappush
+from heapq import heappush, heappop
 from typing import List
 
 
