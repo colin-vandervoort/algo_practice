@@ -30,3 +30,16 @@ link:./python/tools/boilerplate_lc_rust.py[boilerplate_lc_rust.py]
 There is a link:https://cookiecutter.readthedocs.io/en/stable/[Cookiecutter]-based template for generating Python LeetCode problem solution skeletons, see the link:_tools/cookiecutter/lc_py/cookiecutter.json[config file].
 
 This template should be used via the link:./python/tools/cookiecutter_lc_py.py[lc_new_py.py] script, which passes the parameters for the template and output locations to Cookiecutter.
+
+== Whiteboard / diagramming tools
+
+* link:https://www.canva.com/online-whiteboard/[Canva whiteboard]
+** supports freehand drawing
+* link:https://miro.com/online-whiteboard/[miro lite]
+* link:https://app.diagrams.net/[Draw.io]
+** does NOT support freehand drawing
+* link:https://www.lucidchart.com/[Lucidchart]
+** does NOT support freehand drawing
+** free tier:
+*** Up to three (3) editable charts
+*** Up to 60 objects per document

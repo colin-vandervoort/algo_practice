@@ -1,0 +1,32 @@
+// cSpell: ignore TLRU
+
+= Caching
+
+== Cache eviction / replacement strategies
+
+=== Least recently used (LRU)
+
+=== Time-aware least recently used (TLRU)
+
+=== Last in first out (LIFO)
+
+=== First in first out (FIFO)
+
+=== Random replacement (RR)
+
+== Issues to avoid
+
+=== Cache stampede / thundering herd
+
+=== Cache penetration
+
+=== Cache breakdown
+
+=== Cache crash
+
+== Sources
+
+* https://bytebytego.com/guides/how-can-cache-systems-go-wrong/
+* https://en.wikipedia.org/wiki/Thundering_herd_problem
+* http://www.catb.org/jargon/html/T/thundering-herd-problem.html
+* https://en.wikipedia.org/wiki/Cache_replacement_policies

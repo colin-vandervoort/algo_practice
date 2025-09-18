@@ -1,0 +1,59 @@
+ifdef::env-github[]
+:MERMAID: source, mermaid
+endif::[]
+ifndef::env-github[]
+:MERMAID: mermaid
+endif::[]
+
+= Messaging
+:source-highlighter: highlight.js
+
+Messaging systems like Kafka and RabbitMQ can solve problems like:
+
+* High fan-out of data
+** One event may be of interest to several downstream consumers, e.g.
+*** logging
+*** analytics
+*** async application updates
+*** communicating with related services
+* Load balancing and buffering
+* fault tolerance
+** In the case of Kafka
+*** topics can be replicated between nodes
+*** messages are persisted
+*** producers can be configured with different acknowledgement requirements - such that zero, the leader broker, or the leader and all replicas must acknowledge a message to consider it successfully sent
+*** consumers acknowledge messages by committing their "offsets" (their position in the log)
+
+
+
+== Quality of service (QoS)
+
+=== Kafka
+
+* At most once
++
+Messages are delivered once, and if there is a system failure, messages may be lost and are not redelivered.
+* At least once
++
+This means messages are delivered one or more times. If there is a system failure, messages are never lost, but they may be delivered more than once.
+* Exactly once
++
+This is the preferred behavior in that each message is delivered once and only once. Messages are never lost or read twice even if some part of the system fails.
+
+At first it may seem like "Exactly once" delivery would always be the obvious choice, but it does come with increased latency. The three options provide tradeoffs between latency and message durability.
+
+=== MQTT
+
+* QoS 0
++
+At most once delivery (fire and forget)
+* QoS 1
++
+At least once delivery (acknowledged delivery)
+* QoS 2
++
+Exactly once delivery (assured delivery)
+
+== Sources
+
+* link:https://docs.confluent.io/kafka/design/delivery-semantics.html[Kafka delivery semantics]

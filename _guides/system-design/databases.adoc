@@ -1,0 +1,126 @@
+ifdef::env-github[]
+:MERMAID: source, mermaid
+endif::[]
+ifndef::env-github[]
+:MERMAID: mermaid
+endif::[]
+
+= Databases
+:source-highlighter: highlight.js
+
+== Scaling reads
+
+As a system is subjected to more demanding load, the number of read operations may grow beyond the capabilities of the original deployment.
+
+=== Vertical scaling
+
+Scaling "vertically" is the simplest way to increase throughput - running the database on a computer with more CPU, memory, and storage will allow the database system to support more operations.
+
+Scaling vertically does not require any changes to application code and does not introduce additional operational burden.
+
+There are limits on how far vertical scaling can be taken - ultimately there are hard limits on the resources available on a single machine. Additionally, the system may have availability or latency requirements that are impossible to achieve with a single-node data store.
+
+=== Horizontal scaling
+
+==== Single-leader
+
+The simplest form of horizontal scaling involves a single "leader" node and one or more "follower" nodes. These followers are often called "read replicas", because they contain complete replications of the data and only only support read operations. The leader is capable of handling writes in addition to reads.
+
+In addition to improving the read throughput of the system, read replicas can continue serving requests for data in the case that the leader node goes down. Note that the need to replicate data from the leader to the followers can introduce consistency issues. See link:./cap-theorem[CAP theorem] for more information.
+
+== Sharding
+
+Data stores with high write volume requirements may need to distribute writes between multiple nodes in order to increase the write throughput. These nodes are called *partitions* or *shards*.
+
+Sharding a database can introduce complexity, due to the fact that queries have to be made to the node which holds the desired data.
+In the worst case, this means introducing logic to the application code for correctly routing queries.
+
+SQL databases are often used with relations between different tables, but resolving references to other tables in a distributed join can introduce even more complexity to the system.
+De-normalization of data and duplication of data between nodes can improve performance here.
+See the <<_distributed-joins>> section for more information.
+
+The newest database systems tend to have sharding built-in as a well-supported use case.
+This is immediately obvious when setting up a new AWS DynamoDB table, because the second and third configuration values are the partition key and sort key, respectively.
+
+Older database systems tend to offer improved support for sharding using extensions, forks, or abstractions of the core system.
+
+For example, YouTube was initially built using a normal MySQL database, but as it grew the engineers needed to add sharding logic to the application in order to keep up with write volume. Eventually, logic for sharding and other related concerns was pulled out into an independent module. This module is now an open source product called link:https://github.com/vitessio/vitess[Vitess].
+
+The default configuration of PostgreSQL does not offer good ergonomics for sharding and other concerns of high availability systems, but alternatives like link:https://www.cockroachlabs.com/product/overview/[CockroachDB] support most of the same SQL syntax as PostgreSQL and make scaling easier.
+
+=== The "celebrity" or "hot spot" problem
+
+Partition keys are selected with the goal of distributing data as evenly as possible between nodes, but can be edge cases around especially "popular" data. This can cause some partitions to receive a disproportionate amount of read and write requests. Read volume can be decreased using a downstream cache, but write volume requires a more complex approach.
+
+Changing the partitioning strategy to split this popular data between multiple nodes is one approach, but it may be hard to achieve without modifying application code.
+
+If the write volume is not consistently high, adding a queuing system may be sufficient.
+
+Changing the data model and embracing eventual consistency can help here - mutations can be processed asynchronously to per-user representations of the hot spot's data.
+
+Stream-based data systems offer other solutions here - more research is needed though.
+
+=== Hashing
+
+Partition keys do not directly describe the node that will store the data. Indeed, if the mappings were stored directly then it would be more difficult to handle adding and removing nodes.
+
+Instead, partition keys are hashed and the result of the hash is used to select the node.
+
+==== Hashing methods
+
+===== Consistent hashing
+
+Used by DynamoDB
+
+===== Rendezvous hashing
+
+https://en.wikipedia.org/wiki/Rendezvous_hashing
+
+[#_distributed-joins]
+=== Distributed JOINs
+
+==== Types of distributed JOINs
+
+===== Local/Collocated Reference Table Join
+
+===== Local/Collocated Distributed Table Join
+
+===== Remote Distributed Table Join
+
+===== Broadcast Join
+
+===== Shuffle Join
+
+== Indexing
+
+* Indexes are often serialized as b-trees
+* Indexes perform better with high link:https://en.wikipedia.org/wiki/Cardinality_(SQL_statements)[cardinality] data - if the data is unique.
+
+== Normalization / Denormalization
+
+== Comparison of major database systems
+
+[cols="1, 1, 3"]
+|===
+|Database
+|Archetype
+|Consistency
+
+|PostgreSQL
+|RDBMS
+|Strong consistency with a single writer node.
+
+|DynamoDB
+|NoSQL/Document
+|Eventual consistency (default) or strong consistency (since 2018)
+
+|Cassandra
+|NoSQL
+|Eventual consistency (default), with consistency level configurable on a per-query basis
+|===
+
+== Sources
+
+* https://stackoverflow.com/questions/47472209/how-does-sharding-handle-the-joining-of-related-tables
+* https://careersatdoordash.com/blog/eliminating-task-processing-outages-with-kafka/
+* https://cassandra.apache.org/_/cassandra-basics.html
