@@ -24,7 +24,7 @@ Messaging systems like Kafka and RabbitMQ can solve problems like:
 *** producers can be configured with different acknowledgement requirements - such that zero, the leader broker, or the leader and all replicas must acknowledge a message to consider it successfully sent
 *** consumers acknowledge messages by committing their "offsets" (their position in the log)
 
-
+There are also "local" messaging systems lik
 
 == Quality of service (QoS)
 

@@ -1,0 +1,101 @@
+// cSpell: ignore subzones, QNAME, QTYPE, DNSSEC, nordflag
+
+ifdef::env-github[]
+:MERMAID: source, mermaid
+endif::[]
+ifndef::env-github[]
+:MERMAID: mermaid
+endif::[]
+
+= Domain name system (DNS)
+:source-highlighter: highlight.js
+
+DNS is a distributed database primarily used for looking up addresses which correspond to domain names. There are other use cases, like functioning as a basic key-value store, but most Resource Record (RR) types
+
+== DNS zones
+
+The data that describes a zone has four major parts:
+
+* Authoritative data for all nodes within the zone.
+* Data that defines the top node of the zone (can be thought of as part of the authoritative data).
+* Data that describes delegated subzones, i.e., cuts around the bottom of the zone. This data takes the form of NS RRs.
+* Data that allows access to name servers for subzones (sometimes called "glue" data).
+
+== DNS servers
+
+DNS servers fall into one of two types: authoritative nameservers and recursive resolvers. Note that nothing prevents an authoritative nameserver from performing a recursive lookup for a client, but it is recommended to split the two functions onto different hosts.
+
+"Recursion is a major source of cache pollution, and can
+be a major drain on name server performance.  An
+organization's recursive DNS needs should be served by
+some other host than its root name server(s).  An
+exception is made for missing glue since it's possible
+that glue needed for some delegations will not be
+within or beneath any zone for which the server is
+authoritative.  Such glue must be fetched via
+recursive lookups to other servers."
+-- link:https://datatracker.ietf.org/doc/html/rfc2010#section-2[RFC 2010, Section 2 - Operational Requirements]
+
+=== Authoritative nameservers
+
+DNS data is cached at many different layers across different computer systems, but the data for a given DNS zone originates from one of the designated authoritative nameservers within that zone. Nameservers are authoritative for a subtree of the DNS name hierarchy, but can delegate subtrees below their root to other nameservers. This delegation is sometimes called a "zone cut".
+
+=== Recursive resolvers
+
+DNS lookups are considered recursive when the client delegates all of the querying to one server (the recursive resolver), as opposed to an iterative query where the client communicates directly with the nameservers for each zone in the hierarchy.
+
+Note that a recursive resolver may not always be a "server" in the most literal sense.
+
+== Recursive lookup
+
+The beginning of the lookup process is a special case, because the resolver is typically pre-configured with addresses for the root DNS name servers (see link:https://www.internic.net/domain/named.root[example data]).
+
+Recursive step: queried nameserver does not have an answer to the query and delegates to a nameserver lower in the hierarchy
+
+Base case: found a server which knows the answer to the question
+
+=== Example lookup process (without DNSSEC)
+
+Assuming a recursive resolver receives a query with QNAME "example.com." and QTYPE A (IPv4 address).
+
+Note that the IP addresses of name servers are usually provided in the Additional section of a NS answer, reducing the number of required queries.
+
+Also note that user-facing devices like laptops and smartphones have a built-in local DNS resolver, often called a *stub resolver*. These local resolvers don't perform a recursive lookup, but they will check to see if the item exists in a local cache before sending it to a designated recursive resolver, like Google's `8.8.8.8`.
+
+Organizations may configure endpoints (i.e. computer workstations) to use the organization's private recursive resolvers.
+
+[cols="2,3,4"]
+|===
+|Question
+|Explanation
+|dig command (running these in order from the client would be an iterative query)
+
+// |"." NS
+// |Get nameserver(s) for the root of the DNS hierarchy.
+// |`dig @8.8.8.8 +nordflag .`
+
+|"example.com." A
+|Ask the root nameservers for the IP address of example.com. These servers don't know, but have designated `.com.` as a separate zone which should know the answer.
+|`dig @$(dig NS +short . \| head -n 1) +nordflag A example.com`
+
+
+|"example.com." A
+|Ask a nameserver in the `.com.` zone for the IP address of example.com., and get 50.50.50.50 as an answer.
+|`dig @$(dig NS +short .com. \| head -n 1) +nordflag A example.com`
+
+|===
+
+== DNSSEC
+
+== Sources
+
+* link:https://www.rfc-editor.org/rfc/rfc1034[RFC 1034: DOMAIN NAMES - CONCEPTS AND FACILITIES]
+** link:https://www.rfc-editor.org/rfc/rfc1034#section-3[SECTION 3: DOMAIN NAME SPACE and RESOURCE RECORDS]
+** link:https://www.rfc-editor.org/rfc/rfc1034#section-4[SECTION 4: NAME SERVERS]
+* link:https://datatracker.ietf.org/doc/html/rfc2010[RFC 2010: Operational Criteria for Root Name Servers]
+* link:https://www.rfc-editor.org/rfc/rfc2181[RFC 2181: CLARIFICATIONS TO THE DNS SPECIFICATION]
+** link:https://www.rfc-editor.org/rfc/rfc2181#section-7[SECTION 7: SOA RRs]
+* link:https://www.cloudflare.com/learning/dns/what-is-dns/[What is DNS? | How DNS works - Cloudflare]
+* link:https://www.cloudflare.com/learning/dns/dnssec/how-dnssec-works/[How does DNSSEC work? - Cloudflare]
+* https://metebalci.com/blog/a-short-practical-tutorial-of-dig-dns-and-dnssec/
+* https://mikebian.co/understanding-dns-requests-on-macos/

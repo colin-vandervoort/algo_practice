@@ -1,3 +1,5 @@
+// cSpell: ignore OLTP,OLAP,Valkey
+
 ifdef::env-github[]
 :MERMAID: source, mermaid
 endif::[]
@@ -7,6 +9,54 @@ endif::[]
 
 = Databases
 :source-highlighter: highlight.js
+
+== Database roles/types
+
+=== Online Transactional Processing (OLTP)
+
+=== Online Analytical Processing (OLAP)
+
+Examples:
+
+* ClickHouse
+* Apache Druid
+* Google BigQuery
+
+=== Cache
+
+Examples:
+
+* Redis/Valkey
+* Memcached
+
+=== Search
+
+Key capabilities:
+
+* Full-text search (probably powered by inverted indexes)
+* Fuzzy search
+
+Examples:
+
+* ElasticSearch
+
+=== Key/Value
+
+Often sacrifice strong consistency in exchange for high availability and throughput.
+
+Examples:
+
+* DynamoDB
+** actually supports strong consistency since 2018
+
+=== Graph
+
+Most powerful when expressing complex networks of connections
+
+Examples:
+
+* Neo4j
+* Amazon Neptune
 
 == Scaling reads
 
@@ -27,6 +77,8 @@ There are limits on how far vertical scaling can be taken - ultimately there are
 The simplest form of horizontal scaling involves a single "leader" node and one or more "follower" nodes. These followers are often called "read replicas", because they contain complete replications of the data and only only support read operations. The leader is capable of handling writes in addition to reads.
 
 In addition to improving the read throughput of the system, read replicas can continue serving requests for data in the case that the leader node goes down. Note that the need to replicate data from the leader to the followers can introduce consistency issues. See link:./cap-theorem[CAP theorem] for more information.
+
+Handling upgrades or failures with the leader requires the most work, because it is both the source of truth and the only node capable of performing write operations. Using a standby leader can help to handle some of these challenges.
 
 == Sharding
 
@@ -114,7 +166,7 @@ https://en.wikipedia.org/wiki/Rendezvous_hashing
 |NoSQL/Document
 |Eventual consistency (default) or strong consistency (since 2018)
 
-|Cassandra
+|Cassandra/ScyllaDB
 |NoSQL
 |Eventual consistency (default), with consistency level configurable on a per-query basis
 |===
@@ -124,3 +176,4 @@ https://en.wikipedia.org/wiki/Rendezvous_hashing
 * https://stackoverflow.com/questions/47472209/how-does-sharding-handle-the-joining-of-related-tables
 * https://careersatdoordash.com/blog/eliminating-task-processing-outages-with-kafka/
 * https://cassandra.apache.org/_/cassandra-basics.html
+* https://discord.com/blog/how-discord-stores-trillions-of-messages

@@ -1,0 +1,9 @@
+ifdef::env-github[]
+:MERMAID: source, mermaid
+endif::[]
+ifndef::env-github[]
+:MERMAID: mermaid
+endif::[]
+
+= Heap data structure
+:source-highlighter: highlight.js
