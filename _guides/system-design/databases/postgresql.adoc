@@ -1,0 +1,30 @@
+// cSpell: ignore PACELC, ddia, Kleppmann, Beaugureau, Sebastopol, Linearizability
+
+ifdef::env-github[]
+:MERMAID: source, mermaid
+endif::[]
+ifndef::env-github[]
+:MERMAID: mermaid
+endif::[]
+
+= PostgreSQL
+:source-highlighter: highlight.js
+
+== Query language
+
+https://www.postgresql.org/docs/current/sql.html
+
+== PACELC
+
+=== Streaming Replication
+
+https://www.postgresql.org/docs/current/protocol-replication.html
+
+The standard PostgreSQL implementation uses a form of write-ahead log (WAL) shipping to facilitate replication to followers <<ddia-replication>>.
+
+[bibliography]
+== Sources
+
+* link:https://en.wikipedia.org/wiki/PACELC_design_principle[Wikipedia: PACELC design principle]
+* [[[ddia-replication]]] M. Kleppmann, "Replication," in _Designing Data-Intensive Applications_, A. Spencer, Ed., M. Beaugureau, Ed., Sebastopol, CA, USA: O'Reilly, 2017, ch. 8, pp. 159-160.
+* [[[pg-replication-proto]]] _Streaming Replication Protocol_, [Online]. Accessed Sep. 25, 2025. Available: https://www.postgresql.org/docs/current/protocol-replication.html

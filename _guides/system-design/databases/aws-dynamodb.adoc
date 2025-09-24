@@ -1,0 +1,15 @@
+// cSpell: ignore PACELC
+
+ifdef::env-github[]
+:MERMAID: source, mermaid
+endif::[]
+ifndef::env-github[]
+:MERMAID: mermaid
+endif::[]
+
+= AWS DynamoDB
+:source-highlighter: highlight.js
+
+== Query language
+
+== PACELC

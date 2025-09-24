@@ -1,0 +1,34 @@
+// cSpell: ignore PACELC, subsecond
+
+ifdef::env-github[]
+:MERMAID: source, mermaid
+endif::[]
+ifndef::env-github[]
+:MERMAID: mermaid
+endif::[]
+
+= SQLite with LiteFS
+:source-highlighter: highlight.js
+
+https://github.com/superfly/litefs
+
+== Query language
+
+link:https://www.sqlite.org/lang.html[Language]
+
+link:https://www.sqlite.org/windowfunctions.html[Window Functions]
+
+link:https://www.sqlite.org/gencol.html[Generated Columns]
+
+== PACELC
+
+link:https://github.com/superfly/litefs/blob/main/docs/ARCHITECTURE.md#guarantees[LiteFS Architecture Guarantees]
+
+LiteFS can be categorized as a PA/EL data store. Data is replicated asynchronously to follower nodes.
+
+[quote,LiteFS Architecture Guarantees]
+----
+As with any async replication system, there's a window of time where transactions are only durable on the primary node and have not been replicated to a replica node. A catastrophic crash on the primary would cause these transactions to be lost. Typically, this window is subsecond as transactions can quickly be shuttled from the primary to the replicas.
+
+Synchronous replication and time-bounded asynchronous replication is planned for future versions of LiteFS.
+----

@@ -1,0 +1,15 @@
+// cSpell: ignore PACELC, dsql
+
+ifdef::env-github[]
+:MERMAID: source, mermaid
+endif::[]
+ifndef::env-github[]
+:MERMAID: mermaid
+endif::[]
+
+= AWS Aurora DSQL
+:source-highlighter: highlight.js
+
+== Query language
+
+== PACELC

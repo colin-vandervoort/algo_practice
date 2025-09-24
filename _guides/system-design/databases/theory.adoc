@@ -1,0 +1,109 @@
+// cSpell: ignore PACELC, ddia, Kleppmann, Beaugureau, Sebastopol, Linearizability
+
+ifdef::env-github[]
+:MERMAID: source, mermaid
+endif::[]
+ifndef::env-github[]
+:MERMAID: mermaid
+endif::[]
+
+= Database theory
+
+== CAP theorem
+
+[{MERMAID}]
+----
+block-beta
+    columns 3
+    regionAUser["Region A user"] space regionAServer["Region A server"]
+    space:3
+    space:3
+    regionBUser["Region B user"] space regionBServer["Region B server"]
+
+    regionAUser-- "write" -->regionAServer
+    regionBUser-- "read"  -->regionBServer
+    regionAServer-- "Replication fail" -->regionBServer
+----
+
+'''
+
+CAP theorem states that any distributed data store can provide at most two (2) of the following qualities.
+
+* *Consistency*
++
+A distributed data store has consistency if a read operation returns the same value (reflecting the most recent write) or an error, regardless of the data store instance serving the request.
+
+* *Availability*
++
+A distributed data store is available if all non-failing nodes return every request with a response.
+
+* *Partition tolerance*
++
+--
+A distributed data store has partition tolerance if it can continue operating even in the case of network connectivity disruptions between instances. One of two strategies can be taken:
+
+** Cancel operations during a partition to ensure consistency at the expense of availability.
+** Carry out operations during a partition to provide availability at the risk of entering an inconsistent state.
+--
+
+The "pick two out of three" presentation can be misleading, because partitions are a type of fault and partitions will happen inevitably <<ddia>>.
+
+=== The PACELC design principle
+
+// There is an extension to the CAP theorem called the PACELC design principle which provides a more practical outline of the tradeoffs that occur when prioritizing consistency or availability, and how the system will behave when it is and is not partitioned.
+
+There is an extension to the CAP theorem called the PACELC design principle which introduces a fourth design characteristic - latency. This results in four different configurations:
+
+[{MERMAID}]
+----
+flowchart TD
+    Partitioned{Partitioned?}
+    CvsA{<strong>Tradeoff:</strong><br>Consistency vs.<br>Availability}
+    LvsC{<strong>Tradeoff:</strong><br>Latency vs.<br>Consistency}
+    PA{PA}
+    PC{PC}
+    EL{EL}
+    EC{EC}
+
+    Partitioned-- (P) yes (latency suffers) -->CvsA
+    Partitioned-- (E) no (availability suffers) -->LvsC
+
+    CvsA-- (A) -->PA
+    CvsA-- (C) -->PC
+
+    LvsC-- (L) -->EL
+    LvsC-- (C) -->EC
+----
+
+[cols="1,2,3"]
+|===
+
+|Label
+|Priorities
+|Implementation
+
+|PA/EL
+|prioritize availability and latency over consistency
+|Databases built/configured this way often have "eventually consistent" read operations. Requests may not yield the most up-to-data data, because they will answer responses more quickly because there is no need to communicate with other nodes.
+
+|PA/EC
+|when there is a partition, choose availability; else, choose consistency
+|If possible, try to reach other nodes and reach consensus before responding to requests. If the data store node-to-node requests for consensus time out, respond with potentially out-of-date data.
+
+|PC/EL
+|when there is a partition, choose consistency; else, choose latency
+|TODO
+
+|PC/EC
+|choose consistency at all times
+|Because write operations are not considered complete until all nodes (or at least a quorum of nodes) acknowledge replication, there will always be a majority of nodes which agree on current state. If all nodes must acknowledge replication for a write to be committed, then single node can service a read request. If only a majority of nodes need to acknowledge a write in order to be committed, then it is possible that a segmented node will receive a read request, so these quorum-based systems may require inter-node communication in order to ensure consistency.
+
+|===
+
+[bibliography]
+== Sources
+
+* link:https://en.wikipedia.org/wiki/Linearizability[Wikipedia: Linearizability]
+* link:https://en.wikipedia.org/wiki/CAP_theorem[Wikipedia: CAP theorem]
+* link:https://en.wikipedia.org/wiki/PACELC_design_principle[Wikipedia: PACELC design principle]
+* [[[ddia]]] M. Kleppmann, "Consistency and Consensus," in _Designing Data-Intensive Applications_, A. Spencer, Ed., M. Beaugureau, Ed., Sebastopol, CA, USA: O'Reilly, 2017, ch. 8, pp. 336-338.
