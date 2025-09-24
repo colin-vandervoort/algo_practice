@@ -1,3 +1,5 @@
+// cSpell: ignore typeshed
+
 = Python solutions and supporting tools
 :source-highlighter: highlight.js
 
@@ -54,3 +56,57 @@ uv run -- tools/pytest_solutions.py
 # format Python source files
 uv run -- ruff format
 ----
+
+== Python documentation resources
+
+* link:https://docs.python.org/3/index.html[Official Python 3 documentation]
+** link:https://docs.python.org/3/library/graphlib.html[graphlib — Functionality to operate with graph-like structures — Python 3.13.7 documentation]
+* link:https://docs.python.org/3/library/functions.html#help[help built-in function]
+** `graphlib.TopologicalSorter` example
++
+--
+[source]
+----
+$ python3
+>>> import graphlib
+>>> help(graphlib.TopologicalSorter)
+Help on class TopologicalSorter in module graphlib:
+
+class TopologicalSorter(builtins.object)
+ |  TopologicalSorter(graph=None)
+ |
+ |  Provides functionality to topologically sort a graph of hashable nodes
+ |
+ |  Methods defined here:
+ |
+ |  __bool__(self)
+ |
+ |  __init__(self, graph=None)
+ |      Initialize self.  See help(type(self)) for accurate signature.
+ |
+ |  add(self, node, *predecessors)
+ |      Add a new node and its predecessors to the graph.
+ |
+ |      Both the *node* and all elements in *predecessors* must be hashable.
+ |
+ |      If called multiple times with the same node argument, the set of dependencies
+ |      will be the union of all dependencies passed in.
+ |
+ |      It is possible to add a node with no dependencies (*predecessors* is not provided)
+ |      as well as provide a dependency twice. If a node that has not been provided before
+ |      is included among *predecessors* it will be automatically added to the graph with
+ |      no predecessors of its own.
+ |
+ |      Raises ValueError if called after "prepare".
+ |
+...
+----
+--
+* link:https://github.com/python/typeshed[typeshed]
+** external type annotations for the Python standard library and Python builtins, as well as third party packages as contributed by people external to those projects]
+** `graphlib.TopologicalSorter` example:
++
+--
+https://github.com/python/typeshed/blob/main/stdlib/graphlib.pyi
+--
+** link:https://www.youtube.com/watch?v=Vj8ukwPyVMg[anythonywritescode - typeshed is (often) better than the python docs]

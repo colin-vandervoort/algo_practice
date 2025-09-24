@@ -1,0 +1,6 @@
+= Rust solutions and supporting tools
+:source-highlighter: highlight.js
+
+== prerequisites
+
+* link:https://www.rust-lang.org/tools/install[Rust toolchain]
