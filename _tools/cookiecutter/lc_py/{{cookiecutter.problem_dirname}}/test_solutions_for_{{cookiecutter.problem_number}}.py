@@ -1,23 +1,27 @@
-# ruff: noqa: E402, F401
-import os
-import sys
-
+from dataclasses import dataclass
+from typing import Any
 import pytest
 
 from . import initial_approach
 
-# current_dir = os.path.dirname(os.path.abspath(__file__))
-# repo_dir = os.path.dirname(os.path.dirname(os.path.dirname(current_dir)))
-# sys.path.append(repo_dir)
-# from tools.debug_visualizer.visualize_data_structure import (
-#     EdgeMetadata,
-#     NodeMetadata,
-#     visualize_data_structure,
-# )
 
-test_params = []
+@dataclass
+class Case:
+    desc: str
+    expect: Any
+
+    def __str__(self):
+        return f"sol()={self.expect}"
 
 
-@pytest.mark.parametrize("test_input,expected", test_params)
-def test_initial_approach(test_input, expected):
+def idfn(val):
+    if isinstance(val, Case):
+        return val.desc
+
+
+test_cases = []
+
+
+@pytest.mark.parametrize("case", test_cases, ids=idfn)
+def test_initial_approach(case):
     sol = initial_approach.Solution()  # noqa: F841

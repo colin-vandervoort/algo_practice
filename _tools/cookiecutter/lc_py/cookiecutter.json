@@ -1,4 +1,7 @@
 {
-  "problem_dirname": "LeetCode problem directory name (e.g. lc_0042_invert_tree)",
-  "problem_number": "LeetCode problem number"
+  "problem_name": "LeetCode problem name (e.g. Invert Binary Tree)",
+  "problem_name_snake_case": "{{ cookiecutter.problem_name | slugify | replace('-', '_') }}",
+  "problem_number": "LeetCode problem number",
+  "problem_number_left_padded": "{{ '{:04d}'.format(cookiecutter.problem_number | int) }}",
+  "problem_dirname": "{{ 'lc_' ~ cookiecutter.problem_number_left_padded ~ '_' ~ cookiecutter.problem_name_snake_case }}"
 }
