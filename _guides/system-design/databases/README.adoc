@@ -22,7 +22,16 @@ Examples:
 * Apache Druid
 * Google BigQuery
 
-=== Cache
+=== In-memory/cache
+
+==== Use cases
+
+* caching frequently accessed data
+* storing user sessions
+* message broker storage
+* distributed lock
+* rate-limiting
+
 
 Examples:
 
@@ -177,3 +186,4 @@ https://en.wikipedia.org/wiki/Rendezvous_hashing
 * https://careersatdoordash.com/blog/eliminating-task-processing-outages-with-kafka/
 * https://cassandra.apache.org/_/cassandra-basics.html
 * https://discord.com/blog/how-discord-stores-trillions-of-messages
+* https://bytebytego.com/guides/how-can-redis-be-used/

@@ -18,13 +18,22 @@ https://www.postgresql.org/docs/current/sql.html
 
 === Streaming Replication
 
-https://www.postgresql.org/docs/current/protocol-replication.html
 
 The standard PostgreSQL implementation uses a form of write-ahead log (WAL) shipping to facilitate replication to followers <<ddia-replication>>.
+
+This replication method operates asynchronously by default, but the `synchronous_standby_names` parameter on the primary server node can be used to list servers which the primary will wait for replies from before committing changes. Latency can be improved in come cases by listing multiple synchronous standby servers but allowing changes to be committed after a subset of the standbys reply <<pg-docs-replication-config>>.
+
+=== Bi-Directional Replication (BDR)
+
+BDR is a commercially-available PostgreSQL extension which provides: "multi-master replication and data distribution with advanced conflict management, data-loss protection, and throughput up to 5X faster than native logical replication, and enables distributed Postgres clusters with high availability up to five 9s" <<pg-bdr>>.
 
 [bibliography]
 == Sources
 
 * link:https://en.wikipedia.org/wiki/PACELC_design_principle[Wikipedia: PACELC design principle]
+* https://wiki.postgresql.org/wiki/Streaming_Replication
+* https://www.postgresql.org/docs/current/warm-standby.html#SYNCHRONOUS-REPLICATION
 * [[[ddia-replication]]] M. Kleppmann, "Replication," in _Designing Data-Intensive Applications_, A. Spencer, Ed., M. Beaugureau, Ed., Sebastopol, CA, USA: O'Reilly, 2017, ch. 8, pp. 159-160.
 * [[[pg-replication-proto]]] _Streaming Replication Protocol_, [Online]. Accessed Sep. 25, 2025. Available: https://www.postgresql.org/docs/current/protocol-replication.html
+* [[[pg-docs-replication-config]]] _Replication_, [Online]. Accessed Oct. 8, 2025. Available: https://www.postgresql.org/docs/current/runtime-config-replication.html
+* [[[pg-bdr]]] _BDR (Bi-Directional Replication)_, [Online]. Accessed Oct. 8, 2025. Available: https://www.enterprisedb.com/docs/pgd/4/bdr/

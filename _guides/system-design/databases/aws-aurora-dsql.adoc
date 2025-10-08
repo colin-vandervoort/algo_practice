@@ -1,4 +1,4 @@
-// cSpell: ignore PACELC, dsql
+// cSpell: ignore PACELC, dsql, Dmitry, Degtyarev
 
 ifdef::env-github[]
 :MERMAID: source, mermaid
@@ -13,3 +13,7 @@ endif::[]
 == Query language
 
 == PACELC
+
+[bibliography]
+== Sources
+* [[[degtyarev-dsql]]] Dmitry Degtyarev, _Aurora DSQL Through the Lens of the PACELC Theorem_. Available: https://mitek99.medium.com/aurora-dsql-through-the-lens-of-the-pacelc-theorem-489cee1de822

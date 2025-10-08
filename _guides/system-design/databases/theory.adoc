@@ -1,4 +1,4 @@
-// cSpell: ignore PACELC, ddia, Kleppmann, Beaugureau, Sebastopol, Linearizability
+// cSpell: ignore Abadi, PACELC, ddia, Kleppmann, Beaugureau, Sebastopol, Linearizability
 
 ifdef::env-github[]
 :MERMAID: source, mermaid
@@ -10,22 +10,6 @@ endif::[]
 = Database theory
 
 == CAP theorem
-
-[{MERMAID}]
-----
-block-beta
-    columns 3
-    regionAUser["Region A user"] space regionAServer["Region A server"]
-    space:3
-    space:3
-    regionBUser["Region B user"] space regionBServer["Region B server"]
-
-    regionAUser-- "write" -->regionAServer
-    regionBUser-- "read"  -->regionBServer
-    regionAServer-- "Replication fail" -->regionBServer
-----
-
-'''
 
 CAP theorem states that any distributed data store can provide at most two (2) of the following qualities.
 
@@ -50,9 +34,7 @@ The "pick two out of three" presentation can be misleading, because partitions a
 
 === The PACELC design principle
 
-// There is an extension to the CAP theorem called the PACELC design principle which provides a more practical outline of the tradeoffs that occur when prioritizing consistency or availability, and how the system will behave when it is and is not partitioned.
-
-There is an extension to the CAP theorem called the PACELC design principle which introduces a fourth design characteristic - latency. This results in four different configurations:
+There is an extension to the CAP theorem called the PACELC design principle which introduces latency as a fourth design characteristic. This results in four different configurations:
 
 [{MERMAID}]
 ----
@@ -65,8 +47,8 @@ flowchart TD
     EL{EL}
     EC{EC}
 
-    Partitioned-- (P) yes (latency suffers) -->CvsA
-    Partitioned-- (E) no (availability suffers) -->LvsC
+    Partitioned-- (P) yes -->CvsA
+    Partitioned-- (E) no -->LvsC
 
     CvsA-- (A) -->PA
     CvsA-- (C) -->PC
@@ -100,6 +82,35 @@ flowchart TD
 
 |===
 
+== Examples
+
+=== Single leader, single follower
+
+[{MERMAID}]
+----
+block-beta
+    columns 3
+    regionAUser["Region A user"] space regionAServer["Region A server"]
+    space:3
+    space:3
+    regionBUser["Region B user"] space regionBServer["Region B server"]
+
+    regionAUser-- "write" -->regionAServer
+    regionBUser-- "read"  -->regionBServer
+    regionAServer-- "Replication fail" -->regionBServer
+----
+
+'''
+
+The diagram above is provided to help visualize a scenario concerning a data store with one leader (supports reads and writes) and one follower (supports reads to improve durability, latency, and throughput). The behavior in the presence of a network segmentation will depend on how the data store is built and/or configured.
+
+. If strong consistency is desired, then data will need to be replicated synchronously. This means that the leader will need to wait for acknowledgement that the data was successfully replicated before committing the write.
+.. If partitioned, the write will fail, but consistency will be maintained (PC).
+.. Else, the write will have increased latency (EC).
+. If availability is the top priority, then data should be replicated asynchronously. A write operation can be performed on the leader and committed as soon as it succeeds locally.
+.. If partitioned, the write will succeed on the leader despite the replication failure, and the follower will return inconsistent data, improving availability (PA).
+.. Else, the system will have reduced write latency by removing the need for the leader to wait for replication success (EL).
+
 [bibliography]
 == Sources
 
@@ -107,3 +118,5 @@ flowchart TD
 * link:https://en.wikipedia.org/wiki/CAP_theorem[Wikipedia: CAP theorem]
 * link:https://en.wikipedia.org/wiki/PACELC_design_principle[Wikipedia: PACELC design principle]
 * [[[ddia]]] M. Kleppmann, "Consistency and Consensus," in _Designing Data-Intensive Applications_, A. Spencer, Ed., M. Beaugureau, Ed., Sebastopol, CA, USA: O'Reilly, 2017, ch. 8, pp. 336-338.
+* [[[problems-with-cap]]] D.J. Abadi, _Problems with CAP, and Yahoo’s little known NoSQL system_. Available: https://dbmsmusings.blogspot.com/2010/04/problems-with-cap-and-yahoos-little.html
+* [[[consistency-tradeoffs]]] D.J. Abadi, _Consistency Tradeoffs in Modern Distributed Database System Design_. Available: https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf
