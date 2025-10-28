@@ -1,4 +1,5 @@
 = data structures and algorithms (DSA) practice
+:source-highlighter: highlight.js
 
 This repository tracks most of my practice code for DSA problems, alongside some other information that I've compiled while preparing for software engineer interviews.
 
