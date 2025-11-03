@@ -21,3 +21,9 @@ The three pillars of observability are *logs*, *metrics*, and *traces*.
 * time-series databases
 * structured logging (e.g. JSON)
 * sidecar containers for logging
+
+== Logs
+
+=== Audit Logs
+
+*TODO*

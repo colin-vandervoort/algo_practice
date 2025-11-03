@@ -1,0 +1,9 @@
+ifdef::env-github[]
+:MERMAID: source, mermaid
+endif::[]
+ifndef::env-github[]
+:MERMAID: mermaid
+endif::[]
+
+= Model-View-ViewModel
+:source-highlighter: highlight.js

@@ -40,3 +40,9 @@ columns 1
 
 * Load Balancing
 * Firewalls, Access Control Lists (ACLs)
+
+== Protocols
+
+=== ARP
+
+The Address Resolution Protocol (ARP) operates between the Data Link Layer (layer 2) and the Network Layer (layer 3). Its primary function is to map a logical IP address (layer 3) to a physical MAC address (layer 2), which is necessary for devices on a local network to communicate with each other.

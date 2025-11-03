@@ -1,0 +1,29 @@
+// cSpell: ignore systemd
+
+ifdef::env-github[]
+:MERMAID: source, mermaid
+endif::[]
+ifndef::env-github[]
+:MERMAID: mermaid
+endif::[]
+
+= System Design
+:source-highlighter: highlight.js
+
+link:./interview/README.adoc[System Design Interviews]
+
+link:./databases/README.adoc[Databases]
+
+link:./auth.adoc[Authentication and Authorization]
+
+link:./caching.adoc[Caching]
+
+link:./computer-networking.adoc[Computer Networking]
+
+link:./dns.adoc[DNS]
+
+link:./latency.adoc[Latency and Throughput]
+
+link:./messaging-streaming.adoc[Messaging and Streaming]
+
+link:./observability.adoc[Observability]

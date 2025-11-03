@@ -1,0 +1,18 @@
+// cSpell: ignore systemd
+
+ifdef::env-github[]
+:MERMAID: source, mermaid
+endif::[]
+ifndef::env-github[]
+:MERMAID: mermaid
+endif::[]
+
+= Observer Pattern
+:source-highlighter: highlight.js
+
+* provide examples in:
+** React
+** ASP.NET
+** SwiftUI
+** Dart
+** Django

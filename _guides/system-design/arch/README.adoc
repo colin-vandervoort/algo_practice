@@ -1,0 +1,20 @@
+// cSpell: ignore systemd
+
+ifdef::env-github[]
+:MERMAID: source, mermaid
+endif::[]
+ifndef::env-github[]
+:MERMAID: mermaid
+endif::[]
+
+= Software Architecture
+:source-highlighter: highlight.js
+
+*TODO* cover these topics
+
+* abstraction
+** leaky abstractions
+** over-engineering
+* inversion of control
+** dependency injection
+* domain-driven design

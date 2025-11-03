@@ -1,0 +1,22 @@
+ifdef::env-github[]
+:MERMAID: source, mermaid
+endif::[]
+ifndef::env-github[]
+:MERMAID: mermaid
+endif::[]
+
+= Application Programming Interface (API) Design
+:source-highlighter: highlight.js
+
+*TODO* cover these topics
+
+* "CRUD" (Create/Read/Update/Delete) APIS
+** problems with using a single endpoint for varied commands/mutations/use cases.
+** automatic API tools and related
+*** https://docs.postgrest.org/en/v14/
+*** https://github.com/hasura/graphql-engine
+*** AWS AppSync
+*** Databases with HTTP(S) interfaces
+**** Firebase
+**** DynamoDB
+**** CouchDB

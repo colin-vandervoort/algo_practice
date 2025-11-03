@@ -1,0 +1,30 @@
+ifdef::env-github[]
+:MERMAID: source, mermaid
+endif::[]
+ifndef::env-github[]
+:MERMAID: mermaid
+endif::[]
+
+= Authentication and Authorization
+:source-highlighter: highlight.js
+
+== Authentication
+
+* prove who you are
+* in clients, generally handled using either sessions or client-side tokens (e.g. JWTs)
+** JSON Web Tokens (JWTs) also store authorization data
+
+== Authorization
+
+https://www.postgresql.org/docs/current/ddl-priv.html
+https://www.postgresql.org/docs/current/ddl-rowsecurity.html
+
+=== Role-Based Access Control (RBAC)
+
+* at the database level, RBAC can be modeled as a set of many-to-many relationships between the following entities
+** users
+*** https://docs.djangoproject.com/en/5.2/topics/auth/default/#user-objects
+** roles
+*** https://docs.djangoproject.com/en/5.2/topics/auth/default/#groups
+** permissions
+** resources
