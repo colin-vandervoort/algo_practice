@@ -34,6 +34,7 @@ This template should be used via the link:./python/tools/cookiecutter_lc_py.py[l
 
 == Whiteboard / diagramming tools
 
+* Google Sheets
 * link:https://www.canva.com/online-whiteboard/[Canva whiteboard]
 ** supports freehand drawing
 * link:https://miro.com/online-whiteboard/[miro lite]
@@ -44,6 +45,20 @@ This template should be used via the link:./python/tools/cookiecutter_lc_py.py[l
 ** free tier:
 *** Up to three (3) editable charts
 *** Up to 60 objects per document
+* link:https://www.zoom.com/en/products/online-whiteboard/[Zoom Whiteboard]
+
+=== Diagrams as Code
+
+* link:https://github.com/asciidoctor/docker-asciidoctor[AsciiDoctor Docker image]
+** probably need to customize this image in order to support most diagram extensions
+* link:https://mermaid.js.org/[Mermaid]
+* link:https://penrose.cs.cmu.edu/[Penrose]
+** link:https://www.npmjs.com/package/@penrose/roger[Roger (Penrose CLI)]
+** link:https://penrose.cs.cmu.edu/try/?examples=set-theory-domain/tree-euler[Penrose example: set theory]
+** link:https://docs.asciidoctor.org/diagram-extension/latest/diagram_types/penrose/[Using Penrose in AsciiDoc]
+* TikZ
+** link:https://tikz.dev/[TikZ manual]
+** link:https://docs.asciidoctor.org/diagram-extension/latest/diagram_types/tikz/[Using TikZ in AsciiDoc]
 
 == Miscellaneous
 

@@ -14,21 +14,6 @@ endif::[]
 * Product Design
 * Infrastructure Design
 
-[penrose, domain=sets.domain, style=sets.style]
-....
-Set SystemDesign, FrontendDesign, ObjectOrientedDesign, ProductDesign, InfrastructureDesign
-
-IsSubset(ProductDesign, SystemDesign)
-IsSubset(FrontendDesign, ProductDesign)
-IsSubset(ObjectOrientedDesign, ProductDesign)
-IsSubset(InfrastructureDesign, ProductDesign)
-
-Not(Intersecting(InfrastructureDesign, ObjectOrientedDesign))
-Not(Intersecting(InfrastructureDesign, FrontendDesign))
-
-AutoLabel All
-....
-
 There can be overlap between Product Design and the other system design categories.
 
 == Process
