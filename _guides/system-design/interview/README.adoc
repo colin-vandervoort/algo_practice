@@ -1,3 +1,5 @@
+// cSpell: ignore PACELC
+
 ifdef::env-github[]
 :MERMAID: source, mermaid
 endif::[]
@@ -26,7 +28,8 @@ There can be overlap between Product Design and the other system design categori
 ** *Performance*
 *** Latency
 **** Examples
-***** A chat app might have tight latency requirments that warrant the added complexity of using WebSockets.
+***** A chat app might have tight latency requirements that warrant the added complexity of using WebSockets.
+*** Throughput
 ** Consistency
 ** Security
 ** Freshness
@@ -39,7 +42,7 @@ There can be overlap between Product Design and the other system design categori
 ** Can defer defining the schema to the deep dive if this has high impact on the non-functional requirements.
 ** *Data access patterns*
 ** *Read/write ratio*
-** *CAP theorem*
+** *CAP theorem* / PACELC
 
 . Design Deep Dive (*15 minutes*)
 * For the top 2-3 issues:
