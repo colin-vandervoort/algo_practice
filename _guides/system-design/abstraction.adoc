@@ -1,0 +1,117 @@
+ifdef::env-github[]
+:MERMAID: source, mermaid
+endif::[]
+ifndef::env-github[]
+:MERMAID: mermaid
+endif::[]
+
+= Abstraction
+:source-highlighter: highlight.js
+
+== Key terms
+
+=== Interface
+
+Often used to describe the boundary between two systems or a contract for how they will interact.
+
+* Most, but not all programming languages use the keyword "interface" for creating fully-abstract types.
+** `interface` in Java, C#, Go, TypeScript, PHP
+** `trait` in Rust
+** `protocol` and `typing.Protocol` in link:https://docs.swift.org/swift-book/documentation/the-swift-programming-language/protocols/[Swift] and link:https://typing.python.org/en/latest/spec/protocol.html[Python], respectively
+* The terms *boundary*, *contract*, *blueprint*, and *API* are often used in similar contexts, albeit with different semantics.
+
+[#mocking]
+=== Mock/Mocking
+
+Providing an substitute implementation of a component or dependency, usually to facilitate testing.
+
+The "real" or "production" version of the component may not be practical or possible to use in a test. For example, starting up an instance of PostgreSQL every time a test needs to run will make the test slow and requires the testing environment to support running containers or similar in order to host PostgreSQL.
+
+Mocking a dependency also serves to isolate a test, so that failures in the dependency don't indicate a failure in the system under test.
+
+=== Delegates, Callbacks, Lambdas, Function Pointers, and Closures
+
+The terms delegate, callback, and function pointer generally refer to ways of passing a single function or method to dependent code, to be called later.
+
+Closures refer to callable units which "close" over the scope that they are created within, giving them access to external variables and functionality. Callbacks are sometimes closures, delegates are some
+
+"Function pointer" is generally used to refer to a lower-level way of allowing a client to call a function on-demand. In C, this works by providing the actual memory address of a function. In the below example, the mock dependency is provided by way of the global `EmailConfig` struct. The function may be inlined into the consumer when compiled.
+
+[source, C]
+----
+typedef int (*EmailSendingFunction)(const char* address);
+
+typedef struct {
+    EmailSendingFunction send_email;
+} EmailConfig;
+
+EmailConfig email_config;
+
+int mock_send_email(const char* address) {
+    return 0;
+}
+
+int main() {
+    email_config.send_email = mock_send_email;
+    email_config.send_email("foo@example.com");
+}
+----
+
+== Reasons for abstraction
+
+Abstractions are useful for:
+
+. defining contracts between systems
+** these contracts facilitate integration if these systems are operated by different people or organizations
+** alternate implementations of a contract can be swapped out to facilitate testing or utilize a different subsystem
+. limiting access to resources
+** examples
+*** An e-commerce platform may provide a public HTTP API endpoint for updating items in a customer shopping carts, which only allows API clients to mutate application data in ways that maintain all invariants.
+*** The `write` system call in a Unix-like operating system allows clients to safely write data to a block storage device without giving clients access to the low-level hardware systems involved with communicating with the physical device.
+. hiding complexity in a subsystem
+** see the *Facade pattern*
+*** https://refactoring.guru/design-patterns/facade
+*** https://en.wikipedia.org/wiki/Facade_pattern
+
+== Abstraction anti-patterns
+
+Abstraction can easily be taken too far or done in a way that adds complexity with no benefit. Patterns like the abstract factory can certainly be powerful in certain situations, but if misused they will only add cognitive load for developers.
+
+=== Leaky abstractions
+
+Poorly designed abstractions may expose a great amount of detail from a subsystem by way of copious parameters, configuration options, and similar. This forces developers to understand the subsystem in addition to the abstraction.
+
+=== Unnecessary interface types for testing
+
+Testing software is difficult, and sometimes requires <<mocking,mocking>> part of the software system to simulate the behavior of a dependency. One common way of handling this is to define the boundary using something like a Java interface, then creating different two concrete implementations of the interface to enable different behaviors. One concrete implementation of the class is used in the "production" version of the software, while the other would be used in isolated unit tests.
+
+==== Downsides
+
+* Adds extra code to write. While interface types are quick to write in comparison to the concrete implementations, it is still extra code to write. The "abstract class" feature of some programming languages may mix abstract and concrete code within a single file, which can hinder comprehension when misused.
+* Potentially degrades the developer experience (DX) - things like "jump to definition" in an IDE will take you to the interface definition when you usually want the concrete implementation. Modern IDEs usually make it easy to then jump to implementations, but there is still an extra step when navigating a codebase.
+* Obscures the underlying functionality. While sometimes it is desirable to hide the complexity of a subsystem, it can make code harder to read when the behavior of the subsystem is defined in abstract terms and the subsystem behavior is important to the functionality of the surrounding code.
+
+==== Alternatives
+
+First, be sure that the abstraction is necessary. If there is only implementation of an interface, then the concrete type can probably be used instead.
+
+If the system actually needs some way to substitute behavior, one of the following may provide a better developer experience.
+
+=====  Use a delegate function
+
+If an interface only defines a single method, you may be able to provide an abstract definition of the method without the outer type, depending on the programming language. Concrete implementations can be provided which match the specified parameters, return type, and other characteristics.
+
+This can make the code more readable at a glance - a delegate called `SendEmail` is much more obvious than a class called `EmailService` with a single method called `sendEmail`.
+
+===== Override the normal behavior
+
+Use a concrete type (e.g. a normal class) when defining the dependency, and override the method with mocked functionality in a test-only subclass.
+
+* This may not be possible or may look much different in some languages
+** Rust does not have inheritance, but link:https://doc.rust-lang.org/book/ch10-02-traits.html#default-implementations[default implementations] can be provided for a trait.
+** Golang promotes composition over inheritance. The delegate route may be the only alternative here.
+
+== Sources
+
+* https://www.youtube.com/watch?v=hHUL4LsOZnE
+* https://www.joelonsoftware.com/2002/11/11/the-law-of-leaky-abstractions/

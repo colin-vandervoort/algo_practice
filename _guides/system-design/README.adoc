@@ -14,6 +14,8 @@ link:./interview/README.adoc[System Design Interviews]
 
 link:./databases/README.adoc[Databases]
 
+link:./abstraction.adoc[Abstraction]
+
 link:./auth.adoc[Authentication and Authorization]
 
 link:./caching.adoc[Caching]
